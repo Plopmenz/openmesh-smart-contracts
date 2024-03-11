@@ -1,0 +1,23 @@
+{
+  "type": "function",
+  "id": "InitialCounterNumber",
+  "batch": "SepoliaV1",
+  "functionName": "setNumber",
+  "functionArgs": ["3"],
+  "to": "0xF6E1684f1521376Bc1f36dcf44340bBef40deebc",
+  "value": "0",
+  "data": "0x3fb5c1cb0000000000000000000000000000000000000000000000000000000000000003",
+  "gas": "43444",
+  "from": "0xaF7E68bCb2Fc7295492A00177f14F59B92814e70",
+  "transactionSettings": {
+    "chainId": 11155111,
+    "nonce": "97",
+    "baseFee": "1120752724",
+    "priorityFee": "1000000000"
+  },
+  "source": "/home/plopmenz/foundry-template",
+  "submitted": {
+    "transactionHash": "0x133991f384e7f3d1bb768c2a25521c9267e2e2c147ea129c3315bf4cae0ed040",
+    "date": "2024-03-09T20:03:04.575Z"
+  }
+}
