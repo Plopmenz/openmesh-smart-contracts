@@ -1,4 +1,4 @@
-import { Deployer } from "../web3webdeploy/types";
+import { Address, Deployer } from "../web3webdeploy/types";
 import {
   OpenmeshAdminDeployment,
   deploy as openmeshAdminDeploy,
@@ -35,8 +35,20 @@ import {
   OpenClaimingDeployment,
   deploy as openClaimingDeploy,
 } from "../lib/open-claiming/deploy/deploy";
+
+import { deploy as optimsticActionsDeploy } from "../lib/optimistic-actions/deploy/deploy";
+import { deploy as aragonTagVotingDeploy } from "../lib/aragon-tag-voting/deploy/deploy";
+import {
+  DepartmentDeployment,
+  deploy as departmentsDeploy,
+} from "../lib/openmesh-department/deploy/deploy";
 import { UTCBlockchainDate } from "../lib/openmesh-genesis/utils/timeUnits";
 import { Ether, Gwei, ether } from "../web3webdeploy/lib/etherUnits";
+import {
+  SupportedNetworks,
+  SupportedVersions,
+  getNetworkDeploymentForVersion,
+} from "../lib/osx-commons/configs/src";
 
 export interface OpenmeshDeploymentSettings {
   forceRedeploy?: boolean;
@@ -52,6 +64,9 @@ export interface OpenmeshDeployment {
   openRDDaoExtensions: OpenRDDaoExtensionsDeployment;
   openRFP: RFPsDeployment;
   openClaiming: OpenClaimingDeployment;
+  verifiedContributorTagManager: Address;
+  verifiedContributorTagTrustlessManagement: Address;
+  departments: DepartmentDeployment;
 }
 
 export async function deploy(
@@ -62,11 +77,31 @@ export async function deploy(
     return await deployer.loadDeployment({ deploymentName: "latest.json" });
   }
 
+  // OpenR&D
+  deployer.startContext("lib/openrd-foundry");
+  const openRD = await openRDDeploy(deployer, { tasksSettings: {} });
+  deployer.finishContext();
+  deployer.startContext("lib/openrd-dao-extensions");
+  const openRDDaoExtensions = await openRDDaoExtensionsDeploy(deployer, {
+    tasksDeployment: openRD,
+    taskDisputeDeploymentSettings: {},
+    taskDraftsDeploymentSettings: {},
+  });
+  deployer.finishContext();
+  deployer.startContext("lib/openrfp");
+  const openRFP = await openRFPDeploy(deployer, {
+    tasksDeployment: openRD,
+    rfpsDeploymentSettings: {},
+  });
+
+  // Openmesh tokennomics
   deployer.startContext("lib/openmesh-admin");
   const openmeshAdmin = await openmeshAdminDeploy(deployer, {
     adminSettings: {},
   });
   deployer.finishContext();
+  // if (deployer.settings.defaultChainId === 1) {
+  // Only on Ethereum
   deployer.startContext("lib/open-token");
   const openToken = await openTokenDeploy(deployer, {
     openSettings: {},
@@ -101,25 +136,88 @@ export async function deploy(
     verifiedContributorStakingSettings: { tokensPerSecond: Gwei(3858024) }, // ~10_000 OPEN every 30 days (9999.998208)
   });
   deployer.finishContext();
-  deployer.startContext("lib/openrd-foundry");
-  const openRD = await openRDDeploy(deployer, { tasksSettings: {} });
-  deployer.finishContext();
-  deployer.startContext("lib/openrd-dao-extensions");
-  const openRDDaoExtensions = await openRDDaoExtensionsDeploy(deployer, {
-    tasksDeployment: openRD,
-    taskDisputeDeploymentSettings: {},
-    taskDraftsDeploymentSettings: {},
-  });
-  deployer.finishContext();
-  deployer.startContext("lib/openrfp");
-  const openRFP = await openRFPDeploy(deployer, {
-    tasksDeployment: openRD,
-    rfpsDeploymentSettings: {},
-  });
   deployer.finishContext();
   deployer.startContext("lib/open-claiming");
   const openClaiming = await openClaimingDeploy(deployer, {
     openTokenDeployment: openToken,
+  });
+  deployer.finishContext();
+  // }
+
+  // DAO structure
+  let aragonNetwork: SupportedNetworks;
+  const chainId = deployer.settings.defaultChainId;
+  switch (chainId) {
+    case 1:
+      aragonNetwork = SupportedNetworks.MAINNET;
+      break;
+    case 137:
+      aragonNetwork = SupportedNetworks.POLYGON;
+      break;
+    case 11155111:
+      aragonNetwork = SupportedNetworks.SEPOLIA;
+      break;
+    default:
+      throw new Error(`Unknown Aragon deployment for network ${chainId}`);
+  }
+  const aragonDeployment = getNetworkDeploymentForVersion(
+    aragonNetwork,
+    SupportedVersions.V1_3_0
+  );
+  if (!aragonDeployment) {
+    throw new Error("Aragon deployment not found");
+  }
+
+  deployer.startContext("lib/tag-manager");
+  const verifiedContributorTagManager = await deployer
+    .deploy({
+      id: "VerifiedContributorTagManager",
+      contract: "ERC721TagManager",
+      args: [verifiedContributor.verifiedContributor, openmeshAdmin.admin],
+    })
+    .then((deployment) => deployment.address);
+  deployer.finishContext();
+  deployer.startContext("lib/trustless-management");
+  try {
+    const addressTrustlessManagement = await deployer
+      .deploy({
+        id: "AddressTrustlessManagement",
+        contract: "AddressTrustlessManagement",
+      })
+      .then((deployment) => deployment.address);
+  } catch {} // already deployed
+  const verifiedContributorTagTrustlessManagement = await deployer
+    .deploy({
+      id: "VerifiedContributorTagTrustlessManagement",
+      contract: "TagTrustlessManagement",
+      args: [verifiedContributorTagManager],
+    })
+    .then((deployment) => deployment.address);
+  deployer.finishContext();
+  deployer.startContext("lib/optimistic-actions");
+  const optimsticActions = await optimsticActionsDeploy(deployer, {
+    optimisticActionsSettings: {},
+    forceRedeploy: false,
+  });
+  deployer.finishContext();
+  deployer.startContext("lib/aragon-tag-voting");
+  const aragonTagVoting = await aragonTagVotingDeploy(deployer, {
+    aragonDeployment: aragonDeployment,
+    tagVotingSetupSettings: {},
+    tagVotingRepoSettings: {},
+    forceRedeploy: false,
+  });
+  deployer.finishContext();
+  deployer.startContext("lib/openmesh-department");
+  const departments = await departmentsDeploy(deployer, {
+    aragonDeployment: aragonDeployment,
+    departmentFactorySettings: {
+      pluginSetupProcessor: aragonDeployment.PluginSetupProcessor
+        .address as Address,
+      tagManager: verifiedContributorTagManager,
+      tagVotingRepo: aragonTagVoting.tagVotingRepo,
+      trustlessManagement: verifiedContributorTagTrustlessManagement,
+    },
   });
   deployer.finishContext();
 
@@ -133,6 +231,10 @@ export async function deploy(
     openRDDaoExtensions: openRDDaoExtensions,
     openRFP: openRFP,
     openClaiming: openClaiming,
+    verifiedContributorTagManager: verifiedContributorTagManager,
+    verifiedContributorTagTrustlessManagement:
+      verifiedContributorTagTrustlessManagement,
+    departments: departments,
   };
   await deployer.saveDeployment({
     deploymentName: "latest.json",

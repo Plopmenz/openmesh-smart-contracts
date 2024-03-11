@@ -34,3 +34,18 @@
 [submodule "lib/openmesh-department"]
 	path = lib/openmesh-department
 	url = https://github.com/Plopmenz/openmesh-department
+[submodule "lib/tag-manager"]
+	path = lib/tag-manager
+	url = https://github.com/Plopmenz/tag-manager
+[submodule "lib/trustless-management"]
+	path = lib/trustless-management
+	url = https://github.com/Plopmenz/trustless-management
+[submodule "lib/optimistic-actions"]
+	path = lib/optimistic-actions
+	url = https://github.com/Plopmenz/optimistic-actions
+[submodule "lib/osx-commons"]
+	path = lib/osx-commons
+	url = https://github.com/aragon/osx-commons
+[submodule "lib/aragon-tag-voting"]
+	path = lib/aragon-tag-voting
+	url = https://github.com/Plopmenz/aragon-tag-voting
