@@ -4,3 +4,33 @@
 [submodule "web3webdeploy"]
 	path = web3webdeploy
 	url = https://github.com/Plopmenz/web3webdeploy
+[submodule "lib/openmesh-admin"]
+	path = lib/openmesh-admin
+	url = https://github.com/Plopmenz/openmesh-admin
+[submodule "lib/open-token"]
+	path = lib/open-token
+	url = https://github.com/Plopmenz/open-token
+[submodule "lib/validator-pass"]
+	path = lib/validator-pass
+	url = https://github.com/Plopmenz/validator-pass
+[submodule "lib/openmesh-genesis"]
+	path = lib/openmesh-genesis
+	url = https://github.com/Plopmenz/openmesh-genesis
+[submodule "lib/verified-contributor"]
+	path = lib/verified-contributor
+	url = https://github.com/Plopmenz/verified-contributor
+[submodule "lib/openrd-foundry"]
+	path = lib/openrd-foundry
+	url = https://github.com/Plopmenz/openrd-foundry
+[submodule "lib/openrd-dao-extensions"]
+	path = lib/openrd-dao-extensions
+	url = https://github.com/Plopmenz/openrd-dao-extensions
+[submodule "lib/openrfp"]
+	path = lib/openrfp
+	url = https://github.com/Plopmenz/openrfp
+[submodule "lib/open-claiming"]
+	path = lib/open-claiming
+	url = https://github.com/Plopmenz/open-claiming
+[submodule "lib/openmesh-department"]
+	path = lib/openmesh-department
+	url = https://github.com/Plopmenz/openmesh-department
