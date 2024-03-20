@@ -12,10 +12,7 @@
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strictNullChecks": true,
-    "paths": {
-      "viem": ["./web3webdeploy/node_modules/viem"]
-    }
+    "strictNullChecks": true
   },
   "exclude": ["node_modules", "lib"]
 }

@@ -30,6 +30,7 @@ export interface DepartmentsDeployment {
   verifiedContributorTagTrustlessManagement: Address;
   departmentDaos: {
     departmentFactory: Address;
+    departmentOwner: Address;
     disputeDepartment: Address;
     coreMemberDepartment: Address;
   };
@@ -106,13 +107,15 @@ export async function deployDepartments(
       chainId: settings.chainId,
     },
     tagVotingRepoSettings: {
+      subdomain: "tag-voting",
+      maintainer: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
       chainId: settings.chainId,
     },
     // forceRedeploy: false,
   });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-department");
-  const departmentFactory = await deployDepartmentFactory(deployer, {
+  const departmentFactoryDeployment = await deployDepartmentFactory(deployer, {
     pluginSetupProcessor: aragonDeployment.PluginSetupProcessor
       .address as Address,
     tagManager: verifiedContributorTagManager,
@@ -120,7 +123,7 @@ export async function deployDepartments(
     trustlessManagement: verifiedContributorTagTrustlessManagement,
     addressTrustlessManagement: addressTrustlessManagement,
     optimisticActions: optimisticActions.optimisticActions,
-    openrd: settings.openRD.openRD.tasks,
+    openRD: settings.openRD.openRD.tasks,
     departmentOwnerSettings: {
       metadata: "0x",
       tokenVoting: aragonDeployment.TokenVotingRepoProxy.address as Address,
@@ -131,10 +134,19 @@ export async function deployDepartments(
   });
   deployer.finishContext();
   deployer.startContext("lib/tag-manager");
-  const grantDepartmentFactoryVerifiedContributorTagAdminData = "0x0";
+  const grantDepartmentFactoryVerifiedContributorTagAdminData =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("ERC721TagManager"),
+      functionName: "grantRole",
+      args: [
+        deployer.viem.zeroHash, // Default Admin Role
+        departmentFactoryDeployment.departmentFactory,
+      ],
+    });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
   await deployer.execute({
+    id: "GrantDepartmentFactoryVerifiedContributorTagAdmin",
     abi: "OpenmeshAdmin",
     to: settings.smartAccounts.openmeshAdmin.admin,
     function: "performCall",
@@ -149,13 +161,15 @@ export async function deployDepartments(
   await deployer.finishContext();
   deployer.startContext("lib/openmesh-department");
   const disputeDepartment = await deployDepartment(deployer, {
+    id: "DisputeDepartment",
     name: "DISPUTE",
-    departmentFactory: departmentFactory,
+    departmentFactory: departmentFactoryDeployment.departmentFactory,
     chainId: settings.chainId,
   });
   const coreMemberDepartment = await deployDepartment(deployer, {
+    id: "CoreMemberDepartment",
     name: "CORE_MEMBER",
-    departmentFactory: departmentFactory,
+    departmentFactory: departmentFactoryDeployment.departmentFactory,
     chainId: settings.chainId,
   });
   deployer.finishContext();
@@ -168,7 +182,7 @@ export async function deployDepartments(
     verifiedContributorTagTrustlessManagement:
       verifiedContributorTagTrustlessManagement,
     departmentDaos: {
-      departmentFactory: departmentFactory,
+      ...departmentFactoryDeployment,
       disputeDepartment: disputeDepartment,
       coreMemberDepartment: coreMemberDepartment,
     },
