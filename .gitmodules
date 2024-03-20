@@ -49,3 +49,6 @@
 [submodule "lib/aragon-tag-voting"]
 	path = lib/aragon-tag-voting
 	url = https://github.com/Plopmenz/aragon-tag-voting
+[submodule "lib/crosschain-account"]
+	path = lib/crosschain-account
+	url = https://github.com/Plopmenz/crosschain-account
