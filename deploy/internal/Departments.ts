@@ -133,6 +133,35 @@ export async function deployDepartments(
     chainId: settings.chainId,
   });
   deployer.finishContext();
+  deployer.startContext("lib/verified-contributor");
+  const grantDepartmentOwnerVerifiedContributorAdminData =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("VerifiedContributor"),
+      functionName: "grantRole",
+      args: [
+        deployer.viem.zeroHash, // Default Admin Role
+        departmentFactoryDeployment.departmentFactory,
+      ],
+    });
+  const grantDepartmentOwnerVerifiedContributorMintingData =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("VerifiedContributor"),
+      functionName: "grantRole",
+      args: [
+        deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
+        departmentFactoryDeployment.departmentFactory,
+      ],
+    });
+  const grantDepartmentOwnerVerifiedContributorBurningData =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("VerifiedContributor"),
+      functionName: "grantRole",
+      args: [
+        deployer.viem.keccak256(deployer.viem.toBytes("BURN")),
+        departmentFactoryDeployment.departmentFactory,
+      ],
+    });
+  deployer.finishContext();
   deployer.startContext("lib/tag-manager");
   const grantDepartmentFactoryVerifiedContributorTagAdminData =
     deployer.viem.encodeFunctionData({
@@ -145,15 +174,58 @@ export async function deployDepartments(
     });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
+  const grantDepartmentOwnerVerifiedContributorAdminCall =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("OpenmeshAdmin"),
+      functionName: "performCall",
+      args: [
+        verifiedContributor.verifiedContributor,
+        BigInt(0),
+        grantDepartmentOwnerVerifiedContributorAdminData,
+      ],
+    });
+  const grantDepartmentOwnerVerifiedContributorMintingCall =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("OpenmeshAdmin"),
+      functionName: "performCall",
+      args: [
+        verifiedContributor.verifiedContributor,
+        BigInt(0),
+        grantDepartmentOwnerVerifiedContributorMintingData,
+      ],
+    });
+  const grantDepartmentOwnerVerifiedContributorBurningCall =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("OpenmeshAdmin"),
+      functionName: "performCall",
+      args: [
+        verifiedContributor.verifiedContributor,
+        BigInt(0),
+        grantDepartmentOwnerVerifiedContributorBurningData,
+      ],
+    });
+  const grantDepartmentFactoryVerifiedContributorTagAdminCall =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("OpenmeshAdmin"),
+      functionName: "performCall",
+      args: [
+        verifiedContributorTagManager,
+        BigInt(0),
+        grantDepartmentFactoryVerifiedContributorTagAdminData,
+      ],
+    });
   await deployer.execute({
-    id: "GrantDepartmentFactoryVerifiedContributorTagAdmin",
+    id: "GrantDepartmentAccessControlRoles",
     abi: "OpenmeshAdmin",
     to: settings.smartAccounts.openmeshAdmin.admin,
-    function: "performCall",
+    function: "multicall",
     args: [
-      verifiedContributorTagManager,
-      BigInt(0),
-      grantDepartmentFactoryVerifiedContributorTagAdminData,
+      [
+        grantDepartmentOwnerVerifiedContributorAdminCall,
+        grantDepartmentOwnerVerifiedContributorMintingCall,
+        grantDepartmentOwnerVerifiedContributorBurningCall,
+        grantDepartmentFactoryVerifiedContributorTagAdminCall,
+      ],
     ],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
