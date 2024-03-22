@@ -77,6 +77,106 @@ export async function deployOpenmeshTokennomics(
   });
   deployer.finishContext();
 
+  deployer.startContext("lib/open-token");
+  const grantOpenmeshAdminOpenMintingData = deployer.viem.encodeFunctionData({
+    abi: await deployer.getAbi("OPEN"),
+    functionName: "grantRole",
+    args: [
+      deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
+      settings.smartAccounts.openmeshAdmin.admin,
+    ],
+  });
+  const mintGenesisOpenTokensData = deployer.viem.encodeFunctionData({
+    abi: await deployer.getAbi("OPEN"),
+    functionName: "mint",
+    args: [openmeshGenesis.openmeshGenesis, Ether(80_000_000)],
+  });
+  const grantOVCOpenClaimingOpenMintingData = deployer.viem.encodeFunctionData({
+    abi: await deployer.getAbi("OPEN"),
+    functionName: "grantRole",
+    args: [
+      deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
+      openClaiming.ovcClaiming,
+    ],
+  });
+  const grantNodeOpenClaimingOpenMintingData = deployer.viem.encodeFunctionData(
+    {
+      abi: await deployer.getAbi("OPEN"),
+      functionName: "grantRole",
+      args: [
+        deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
+        openClaiming.nodeClaiming,
+      ],
+    }
+  );
+  deployer.finishContext();
+  deployer.startContext("lib/validator-pass");
+  const grantGenesisGenesisValidatorPassMintingData =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("ValidatorPass"),
+      functionName: "grantRole",
+      args: [
+        deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
+        openmeshGenesis.openmeshGenesis,
+      ],
+    });
+  deployer.finishContext();
+  deployer.startContext("lib/openmesh-admin");
+  const grantOpenmeshAdminOpenMintingCall = deployer.viem.encodeFunctionData({
+    abi: await deployer.getAbi("OpenmeshAdmin"),
+    functionName: "performCall",
+    args: [openToken.openToken, BigInt(0), grantOpenmeshAdminOpenMintingData],
+  });
+  const mintGenesisOpenTokensCall = deployer.viem.encodeFunctionData({
+    abi: await deployer.getAbi("OpenmeshAdmin"),
+    functionName: "performCall",
+    args: [openToken.openToken, BigInt(0), mintGenesisOpenTokensData],
+  });
+  const grantOVCOpenClaimingOpenMintingCall = deployer.viem.encodeFunctionData({
+    abi: await deployer.getAbi("OpenmeshAdmin"),
+    functionName: "performCall",
+    args: [openToken.openToken, BigInt(0), grantOVCOpenClaimingOpenMintingData],
+  });
+  const grantNodeOpenClaimingOpenMintingCall = deployer.viem.encodeFunctionData(
+    {
+      abi: await deployer.getAbi("OpenmeshAdmin"),
+      functionName: "performCall",
+      args: [
+        openToken.openToken,
+        BigInt(0),
+        grantNodeOpenClaimingOpenMintingData,
+      ],
+    }
+  );
+  const grantGenesisGenesisValidatorPassMintingCall =
+    deployer.viem.encodeFunctionData({
+      abi: await deployer.getAbi("OpenmeshAdmin"),
+      functionName: "performCall",
+      args: [
+        validatorPass.validatorPass,
+        BigInt(0),
+        grantGenesisGenesisValidatorPassMintingData,
+      ],
+    });
+  await deployer.execute({
+    id: "GrantTokennomicsAccessControlRoles",
+    abi: "OpenmeshAdmin",
+    to: settings.smartAccounts.openmeshAdmin.admin,
+    function: "multicall",
+    args: [
+      [
+        grantOpenmeshAdminOpenMintingCall,
+        mintGenesisOpenTokensCall,
+        grantOVCOpenClaimingOpenMintingCall,
+        grantNodeOpenClaimingOpenMintingCall,
+        grantGenesisGenesisValidatorPassMintingCall,
+      ],
+    ],
+    chainId: settings.chainId,
+    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+  });
+  await deployer.finishContext();
+
   return {
     openToken: openToken,
     validatorPass: validatorPass,
