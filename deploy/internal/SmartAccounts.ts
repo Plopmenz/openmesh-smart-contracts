@@ -34,7 +34,7 @@ export async function deploySmartAccounts(
   const disputeDepartment = await multiDeploy(
     (chainId) =>
       deployAdmin(deployer, {
-        id: "DisputeDepartment",
+        id: "DisputeDepartmentSmartAccount",
         chainId: chainId,
         salt: "DISPUTE",
       }),
@@ -43,7 +43,7 @@ export async function deploySmartAccounts(
   const coreMemberDepartment = await multiDeploy(
     (chainId) =>
       deployAdmin(deployer, {
-        id: "CoreMemberDepartment",
+        id: "CoreMemberDepartmentSmartAccount",
         chainId: chainId,
         salt: "COREMEMBER",
       }),

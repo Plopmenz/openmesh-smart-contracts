@@ -76,7 +76,7 @@ export async function deploy(
 
   // Ethereum accounts for the polygon departments
   const crossChainDepartments = await deployCrossChainDepartments(deployer, {
-    acountChainId: ethereumChainId,
+    accountChainId: ethereumChainId,
     departmentChainId: polygonChainId,
     smartAccounts: smartAccounts,
   });
