@@ -1,5 +1,5 @@
 import { Deployer, Address } from "../../web3webdeploy/types";
-import { multiDeploy } from "../deploy";
+import { getChainSettings, multiDeploy } from "../deploy";
 
 import {
   OpenmeshAdminDeployment,
@@ -27,25 +27,31 @@ export async function deploySmartAccounts(
   const openmeshAdmin = await multiDeploy(
     (chainId) =>
       openmeshAdminDeploy(deployer, {
-        adminSettings: { chainId: chainId },
+        adminSettings: {
+          id: `OpenmeshAdmin_${chainId}`,
+          chainId: chainId,
+          ...getChainSettings(chainId),
+        },
       }),
     settings.chains
   );
   const disputeDepartment = await multiDeploy(
     (chainId) =>
       deployAdmin(deployer, {
-        id: "DisputeDepartmentSmartAccount",
+        id: `DisputeDepartmentSmartAccount_${chainId}`,
         chainId: chainId,
         salt: "DISPUTE",
+        ...getChainSettings(chainId),
       }),
     settings.chains
   );
   const coreMemberDepartment = await multiDeploy(
     (chainId) =>
       deployAdmin(deployer, {
-        id: "CoreMemberDepartmentSmartAccount",
+        id: `CoreMemberDepartmentSmartAccount_${chainId}`,
         chainId: chainId,
         salt: "COREMEMBER",
+        ...getChainSettings(chainId),
       }),
     settings.chains
   );

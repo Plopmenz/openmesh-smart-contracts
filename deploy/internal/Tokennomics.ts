@@ -19,6 +19,7 @@ import {
   OpenClaimingDeployment,
   deploy as openClaimingDeploy,
 } from "../../lib/open-claiming/deploy/deploy";
+import { getChainSettings } from "../deploy";
 
 export interface DeployOpenmeshTokennomicsSettings {
   smartAccounts: SmartAccountsDeployment;
@@ -38,13 +39,19 @@ export async function deployOpenmeshTokennomics(
 ): Promise<OpenmeshTokennomicsDeployment> {
   deployer.startContext("lib/open-token");
   const openToken = await openTokenDeploy(deployer, {
-    openSettings: { chainId: settings.chainId },
+    openSettings: {
+      chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
+    },
     // forceRedeploy: false,
   });
   deployer.finishContext();
   deployer.startContext("lib/validator-pass");
   const validatorPass = await validatorPassDeploy(deployer, {
-    validatorPassSettings: { chainId: settings.chainId },
+    validatorPassSettings: {
+      chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
+    },
     // forceRedeploy: false,
   });
   deployer.finishContext();
@@ -53,8 +60,6 @@ export async function deployOpenmeshTokennomics(
     openTokenDeployment: openToken,
     validatorPassDeployment: validatorPass,
     openmeshGenesisSettings: {
-      chainId: settings.chainId,
-
       tokensPerWeiPerPeriod: [BigInt(30_000), BigInt(27_500), BigInt(25_000)],
       start: UTCBlockchainDate(2024, 3, 2), // 2 March 2024
       periodEnds: [
@@ -63,7 +68,9 @@ export async function deployOpenmeshTokennomics(
         UTCBlockchainDate(2024, 3, 30), // 30 March 2024
       ],
       minWeiPerAccount: ether / BigInt(2), // 0.5 ETH
-      maxWeiPerAccount: Ether(2), // 2 ETH
+      maxWeiPerAccount: Ether(2), // 2 ETH,
+      chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
     },
     // forceRedeploy: false,
   });
@@ -71,8 +78,14 @@ export async function deployOpenmeshTokennomics(
   deployer.startContext("lib/open-claiming");
   const openClaiming = await openClaimingDeploy(deployer, {
     openTokenDeployment: openToken,
-    verifiedContributorClaiming: { chainId: settings.chainId },
-    nodesWithdrawClaiming: { chainId: settings.chainId },
+    verifiedContributorClaiming: {
+      chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
+    },
+    nodesWithdrawClaiming: {
+      chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
+    },
     // forceRedeploy: false,
   });
   deployer.finishContext();
@@ -174,6 +187,7 @@ export async function deployOpenmeshTokennomics(
     ],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    ...getChainSettings(settings.chainId),
   });
   await deployer.finishContext();
 

@@ -19,6 +19,7 @@ import {
 } from "./internal/CrossChainDepartments";
 
 import { SupportedNetworks } from "../lib/osx-commons/configs/src";
+import { Gwei, gwei } from "../web3webdeploy/lib/etherUnits";
 
 export interface OpenmeshDeploymentSettings {
   forceRedeploy?: boolean;
@@ -93,6 +94,36 @@ export async function deploy(
     deployment: deployment,
   });
   return deployment;
+}
+
+export function getChainSettings(chainId: number): {
+  baseFee?: bigint;
+  priorityFee?: bigint;
+} {
+  switch (chainId) {
+    case 1:
+      return {
+        baseFee: Gwei(20),
+        priorityFee: gwei / BigInt(2),
+      };
+    case 137:
+      return {
+        baseFee: Gwei(75),
+        priorityFee: Gwei(30),
+      };
+    case 80001:
+      return {
+        baseFee: Gwei(5),
+        priorityFee: Gwei(30),
+      };
+    case 11155111:
+      return {
+        baseFee: Gwei(2),
+        priorityFee: Gwei(3),
+      };
+    default:
+      return {};
+  }
 }
 
 export async function multiDeploy<T>(

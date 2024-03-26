@@ -21,6 +21,7 @@ import {
   getNetworkDeploymentForVersion,
 } from "../../lib/osx-commons/configs/src";
 import { OpenRDDeployment } from "./OpenRD";
+import { getChainSettings } from "../deploy";
 
 export interface DeployDepartmentsSettings {
   smartAccounts: SmartAccountsDeployment;
@@ -69,6 +70,7 @@ export async function deployDepartments(
         settings.smartAccounts.openmeshAdmin.admin,
       ],
       chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
     })
     .then((deployment) => deployment.address);
   deployer.finishContext();
@@ -78,6 +80,7 @@ export async function deployDepartments(
       id: "AddressTrustlessManagement",
       contract: "AddressTrustlessManagement",
       chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
     })
     .then((deployment) => deployment.address);
   const verifiedContributorCountTrustlessManagement = await deployer
@@ -86,6 +89,7 @@ export async function deployDepartments(
       contract: "ERC721CountTrustlessManagement",
       args: [verifiedContributorTagManager],
       chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
     })
     .then((deployment) => deployment.address);
   const verifiedContributorTagTrustlessManagement = await deployer
@@ -94,6 +98,7 @@ export async function deployDepartments(
       contract: "TagTrustlessManagement",
       args: [verifiedContributorTagManager],
       chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
     })
     .then((deployment) => deployment.address);
   deployer.finishContext();
@@ -115,6 +120,7 @@ export async function deployDepartments(
       subdomain: "tag-voting",
       maintainer: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
       chainId: settings.chainId,
+      ...getChainSettings(settings.chainId),
     },
     // forceRedeploy: false,
   });
@@ -136,6 +142,7 @@ export async function deployDepartments(
       trustlessManagement: verifiedContributorCountTrustlessManagement,
     },
     chainId: settings.chainId,
+    ...getChainSettings(settings.chainId),
   });
   deployer.finishContext();
 
@@ -235,6 +242,7 @@ export async function deployDepartments(
     ],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    ...getChainSettings(settings.chainId),
   });
   await deployer.finishContext();
 
@@ -246,6 +254,7 @@ export async function deployDepartments(
     pluginSetupProcessor: aragonDeployment.PluginSetupProcessor
       .address as Address,
     chainId: settings.chainId,
+    ...getChainSettings(settings.chainId),
   });
   const coreMemberDepartment = await deployDepartment(deployer, {
     id: "CoreMemberDepartmentDAO",
@@ -254,6 +263,7 @@ export async function deployDepartments(
     pluginSetupProcessor: aragonDeployment.PluginSetupProcessor
       .address as Address,
     chainId: settings.chainId,
+    ...getChainSettings(settings.chainId),
   });
   deployer.finishContext();
 
@@ -266,6 +276,7 @@ export async function deployDepartments(
     args: [disputeDepartment.dao],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    ...getChainSettings(settings.chainId),
   });
   await deployer.execute({
     id: "TransferCoreMemberSmartAccountOwnershipToDepartmentDAO",
@@ -275,6 +286,7 @@ export async function deployDepartments(
     args: [coreMemberDepartment.dao],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    ...getChainSettings(settings.chainId),
   });
   await deployer.finishContext();
 

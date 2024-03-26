@@ -6,6 +6,7 @@ import {
   CCIPDeployments,
   Chains,
 } from "../../lib/crosschain-account/utils/ccip";
+import { getChainSettings } from "../deploy";
 
 export interface DeployCrossChainDepartmentsSettings {
   smartAccounts: SmartAccountsDeployment;
@@ -25,17 +26,19 @@ export async function deployCrossChainDepartments(
   deployer.startContext("lib/crosschain-account");
   const disputeDepartment = await deployCrossChainAccount(deployer, {
     id: "DisputeDepartmentCrossChainAccount",
-    chainId: settings.accountChainId,
     originChainSelector:
       CCIPDeployments[settings.departmentChainId].chainSelector,
     originAddress: settings.smartAccounts.departments.disputeDepartment,
+    chainId: settings.accountChainId,
+    ...getChainSettings(settings.accountChainId),
   });
   const coreMemberDepartment = await deployCrossChainAccount(deployer, {
     id: "CoreMemberDepartmentCrossChainAccount",
-    chainId: settings.accountChainId,
     originChainSelector:
       CCIPDeployments[settings.departmentChainId].chainSelector,
     originAddress: settings.smartAccounts.departments.coreMemberDepartment,
+    chainId: settings.accountChainId,
+    ...getChainSettings(settings.accountChainId),
   });
   deployer.finishContext();
 
@@ -48,6 +51,7 @@ export async function deployCrossChainDepartments(
     args: [disputeDepartment],
     chainId: settings.accountChainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    ...getChainSettings(settings.accountChainId),
   });
   await deployer.execute({
     id: "TransferCoreMemberSmartAccountOwnershipToCrossChainAccount",
@@ -57,6 +61,7 @@ export async function deployCrossChainDepartments(
     args: [coreMemberDepartment],
     chainId: settings.accountChainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    ...getChainSettings(settings.accountChainId),
   });
   await deployer.finishContext();
 

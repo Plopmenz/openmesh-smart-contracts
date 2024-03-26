@@ -1,5 +1,5 @@
 import { Deployer } from "../../web3webdeploy/types";
-import { multiDeploy } from "../deploy";
+import { getChainSettings, multiDeploy } from "../deploy";
 
 import {
   TasksDeployment,
@@ -31,7 +31,13 @@ export async function deployOpenRD(
   deployer.startContext("lib/openrd-foundry");
   const openRD = await multiDeploy(
     (chainId) =>
-      openRDDeploy(deployer, { tasksSettings: { chainId: chainId } }),
+      openRDDeploy(deployer, {
+        tasksSettings: {
+          id: `OpenRD_${chainId}`,
+          chainId: chainId,
+          ...getChainSettings(chainId),
+        },
+      }),
     settings.chains
   );
   deployer.finishContext();
@@ -40,8 +46,16 @@ export async function deployOpenRD(
     (chainId) =>
       openRDDaoExtensionsDeploy(deployer, {
         tasksDeployment: openRD,
-        taskDisputeDeploymentSettings: { chainId: chainId },
-        taskDraftsDeploymentSettings: { chainId: chainId },
+        taskDisputeDeploymentSettings: {
+          id: `OpenRDDisputes_${chainId}`,
+          chainId: chainId,
+          ...getChainSettings(chainId),
+        },
+        taskDraftsDeploymentSettings: {
+          id: `OpenRDDrafts_${chainId}`,
+          chainId: chainId,
+          ...getChainSettings(chainId),
+        },
       }),
     settings.chains
   );
@@ -51,7 +65,11 @@ export async function deployOpenRD(
     (chainId) =>
       openRFPDeploy(deployer, {
         tasksDeployment: openRD,
-        rfpsDeploymentSettings: { chainId: chainId },
+        rfpsDeploymentSettings: {
+          id: `OpenRFP_${chainId}`,
+          chainId: chainId,
+          ...getChainSettings(chainId),
+        },
       }),
     settings.chains
   );
