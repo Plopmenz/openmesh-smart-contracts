@@ -6,6 +6,7 @@ import {
   deploy as openmeshAdminDeploy,
 } from "../../lib/openmesh-admin/deploy/deploy";
 import { deployAdmin } from "../../lib/openmesh-admin/deploy/internal/OpenmeshAdmin";
+import { DepartmentTags } from "./Departments";
 
 export interface DeploySmartAccountsSettings {
   chains: number[];
@@ -16,6 +17,7 @@ export interface SmartAccountsDeployment {
   departments: {
     disputeDepartment: Address;
     coreMemberDepartment: Address;
+    expertDepartment: Address;
   };
 }
 
@@ -40,7 +42,7 @@ export async function deploySmartAccounts(
       deployAdmin(deployer, {
         id: `DisputeDepartmentSmartAccount_${chainId}`,
         chainId: chainId,
-        salt: "DISPUTE",
+        salt: DepartmentTags.Dispute,
         ...getChainSettings(chainId),
       }),
     settings.chains
@@ -50,7 +52,17 @@ export async function deploySmartAccounts(
       deployAdmin(deployer, {
         id: `CoreMemberDepartmentSmartAccount_${chainId}`,
         chainId: chainId,
-        salt: "COREMEMBER",
+        salt: DepartmentTags.CoreMember,
+        ...getChainSettings(chainId),
+      }),
+    settings.chains
+  );
+  const expertDepartment = await multiDeploy(
+    (chainId) =>
+      deployAdmin(deployer, {
+        id: `ExpertDepartmentSmartAccount_${chainId}`,
+        chainId: chainId,
+        salt: DepartmentTags.Expert,
         ...getChainSettings(chainId),
       }),
     settings.chains
@@ -62,6 +74,7 @@ export async function deploySmartAccounts(
     departments: {
       disputeDepartment: disputeDepartment,
       coreMemberDepartment: coreMemberDepartment,
+      expertDepartment: expertDepartment,
     },
   };
 }

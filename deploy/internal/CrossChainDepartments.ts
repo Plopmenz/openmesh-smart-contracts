@@ -17,6 +17,7 @@ export interface DeployCrossChainDepartmentsSettings {
 export interface CrossChainDepartmentsDeployment {
   disputeDepartment: Address;
   coreMemberDepartment: Address;
+  expertDepartment: Address;
 }
 
 export async function deployCrossChainDepartments(
@@ -37,6 +38,14 @@ export async function deployCrossChainDepartments(
     originChainSelector:
       CCIPDeployments[settings.departmentChainId].chainSelector,
     originAddress: settings.smartAccounts.departments.coreMemberDepartment,
+    chainId: settings.accountChainId,
+    ...getChainSettings(settings.accountChainId),
+  });
+  const expertDepartment = await deployCrossChainAccount(deployer, {
+    id: "ExpertDepartmentCrossChainAccount",
+    originChainSelector:
+      CCIPDeployments[settings.departmentChainId].chainSelector,
+    originAddress: settings.smartAccounts.departments.expertDepartment,
     chainId: settings.accountChainId,
     ...getChainSettings(settings.accountChainId),
   });
@@ -63,10 +72,21 @@ export async function deployCrossChainDepartments(
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
     ...getChainSettings(settings.accountChainId),
   });
+  await deployer.execute({
+    id: "TransferExpertSmartAccountOwnershipToCrossChainAccount",
+    abi: await deployer.getAbi("OpenmeshAdmin"),
+    to: settings.smartAccounts.departments.expertDepartment,
+    function: "transferOwnership",
+    args: [expertDepartment],
+    chainId: settings.accountChainId,
+    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    ...getChainSettings(settings.accountChainId),
+  });
   await deployer.finishContext();
 
   return {
     disputeDepartment: disputeDepartment,
     coreMemberDepartment: coreMemberDepartment,
+    expertDepartment: expertDepartment,
   };
 }
