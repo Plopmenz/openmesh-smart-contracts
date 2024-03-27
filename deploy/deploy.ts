@@ -113,13 +113,13 @@ export function getChainSettings(chainId: number): {
       };
     case 80001:
       return {
-        baseFee: Gwei(5),
-        priorityFee: Gwei(30),
+        baseFee: gwei + gwei / BigInt(2),
+        priorityFee: gwei + gwei / BigInt(2),
       };
     case 11155111:
       return {
-        baseFee: Gwei(2),
-        priorityFee: Gwei(3),
+        baseFee: Gwei(1),
+        priorityFee: Gwei(1),
       };
     default:
       return {};
