@@ -91,37 +91,27 @@ export async function deployOpenmeshTokennomics(
   deployer.finishContext();
 
   deployer.startContext("lib/open-token");
-  const grantOpenmeshAdminOpenMintingData = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("OPEN"),
-    functionName: "grantRole",
-    args: [
-      deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
-      settings.smartAccounts.openmeshAdmin.admin,
-    ],
-  });
-  const mintGenesisOpenTokensData = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("OPEN"),
-    functionName: "mint",
-    args: [openmeshGenesis.openmeshGenesis, Ether(80_000_000)],
-  });
-  const grantOVCOpenClaimingOpenMintingData = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("OPEN"),
-    functionName: "grantRole",
-    args: [
-      deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
-      openClaiming.ovcClaiming,
-    ],
-  });
-  const grantNodeOpenClaimingOpenMintingData = deployer.viem.encodeFunctionData(
-    {
-      abi: await deployer.getAbi("OPEN"),
+  const OPENAbi = await deployer.getAbi("OPEN");
+  const OPENMinting = [
+    settings.smartAccounts.openmeshAdmin.admin,
+    openClaiming.ovcClaiming,
+    openClaiming.nodeClaiming,
+  ];
+  const grantOpenMintingDatas = OPENMinting.map((contractAddress) =>
+    deployer.viem.encodeFunctionData({
+      abi: OPENAbi,
       functionName: "grantRole",
       args: [
         deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
-        openClaiming.nodeClaiming,
+        contractAddress,
       ],
-    }
+    })
   );
+  const mintGenesisOpenTokensData = deployer.viem.encodeFunctionData({
+    abi: OPENAbi,
+    functionName: "mint",
+    args: [openmeshGenesis.openmeshGenesis, Ether(80_000_000)],
+  });
   deployer.finishContext();
   deployer.startContext("lib/validator-pass");
   const grantGenesisGenesisValidatorPassMintingData =
@@ -135,35 +125,23 @@ export async function deployOpenmeshTokennomics(
     });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
-  const grantOpenmeshAdminOpenMintingCall = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("OpenmeshAdmin"),
-    functionName: "performCall",
-    args: [openToken.openToken, BigInt(0), grantOpenmeshAdminOpenMintingData],
-  });
+  const openmeshAdminAbi = await deployer.getAbi("OpenmeshAdmin");
+  const grantOpenMintingCalls = grantOpenMintingDatas.map(
+    (grantOpenMintingData) =>
+      deployer.viem.encodeFunctionData({
+        abi: openmeshAdminAbi,
+        functionName: "performCall",
+        args: [openToken.openToken, BigInt(0), grantOpenMintingData],
+      })
+  );
   const mintGenesisOpenTokensCall = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("OpenmeshAdmin"),
+    abi: openmeshAdminAbi,
     functionName: "performCall",
     args: [openToken.openToken, BigInt(0), mintGenesisOpenTokensData],
   });
-  const grantOVCOpenClaimingOpenMintingCall = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("OpenmeshAdmin"),
-    functionName: "performCall",
-    args: [openToken.openToken, BigInt(0), grantOVCOpenClaimingOpenMintingData],
-  });
-  const grantNodeOpenClaimingOpenMintingCall = deployer.viem.encodeFunctionData(
-    {
-      abi: await deployer.getAbi("OpenmeshAdmin"),
-      functionName: "performCall",
-      args: [
-        openToken.openToken,
-        BigInt(0),
-        grantNodeOpenClaimingOpenMintingData,
-      ],
-    }
-  );
   const grantGenesisGenesisValidatorPassMintingCall =
     deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
+      abi: openmeshAdminAbi,
       functionName: "performCall",
       args: [
         validatorPass.validatorPass,
@@ -178,10 +156,8 @@ export async function deployOpenmeshTokennomics(
     function: "multicall",
     args: [
       [
-        grantOpenmeshAdminOpenMintingCall,
+        ...grantOpenMintingCalls,
         mintGenesisOpenTokensCall,
-        grantOVCOpenClaimingOpenMintingCall,
-        grantNodeOpenClaimingOpenMintingCall,
         grantGenesisGenesisValidatorPassMintingCall,
       ],
     ],

@@ -124,7 +124,7 @@ export async function deployDepartments(
       chainId: settings.chainId,
     },
     tagVotingRepoSettings: {
-      subdomain: "tag-voting",
+      subdomain: "tagvoting",
       maintainer: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
@@ -154,122 +154,108 @@ export async function deployDepartments(
   deployer.finishContext();
 
   deployer.startContext("lib/verified-contributor");
-  const grantDepartmentOwnerVerifiedContributorAdminData =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("VerifiedContributor"),
-      functionName: "grantRole",
-      args: [
-        deployer.viem.zeroHash, // Default Admin Role
-        departmentFactory.departmentFactory,
-      ],
-    });
-  const grantDepartmentOwnerVerifiedContributorMintingData =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("VerifiedContributor"),
-      functionName: "grantRole",
-      args: [
-        deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
-        departmentFactory.departmentFactory,
-      ],
-    });
-  const grantDepartmentOwnerVerifiedContributorBurningData =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("VerifiedContributor"),
-      functionName: "grantRole",
-      args: [
-        deployer.viem.keccak256(deployer.viem.toBytes("BURN")),
-        departmentFactory.departmentFactory,
-      ],
-    });
+  const verifiedContributorAbi = await deployer.getAbi("VerifiedContributor");
+  const departmentOwnerRoles = [
+    deployer.viem.zeroHash, // Default Admin Role
+    deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
+    deployer.viem.keccak256(deployer.viem.toBytes("BURN")),
+  ];
+  const grantDepartmentOwnerVerifiedContributorRoleDatas =
+    departmentOwnerRoles.map((role) =>
+      deployer.viem.encodeFunctionData({
+        abi: verifiedContributorAbi,
+        functionName: "grantRole",
+        args: [role, departmentFactory.departmentFactory],
+      })
+    );
   const grantOpenmeshAdminVerifiedContributorMintingData =
     deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("VerifiedContributor"),
+      abi: verifiedContributorAbi,
       functionName: "grantRole",
       args: [
         deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
         settings.smartAccounts.openmeshAdmin.admin,
       ],
     });
-  const mintFirstVerifiedContributorData = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("VerifiedContributor"),
-    functionName: "mint",
-    args: ["0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51", BigInt(0)],
-  });
+  const initialVerifiedContributors = [
+    {
+      address: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+      tags: [
+        DepartmentTags.Dispute,
+        DepartmentTags.CoreMember,
+        DepartmentTags.Expert,
+      ],
+    },
+  ];
+  const mintFirstVerifiedContributorDatas = initialVerifiedContributors.map(
+    (initialVerifiedContributor) =>
+      deployer.viem.encodeFunctionData({
+        abi: verifiedContributorAbi,
+        functionName: "mint",
+        args: [initialVerifiedContributor.address, BigInt(0)],
+      })
+  );
   deployer.finishContext();
   deployer.startContext("lib/tag-manager");
+  const tagManagerAbi = await deployer.getAbi("ERC721TagManager");
+  const tagsToGrant = [
+    DepartmentTags.Dispute,
+    DepartmentTags.CoreMember,
+    DepartmentTags.Expert,
+  ];
   const grantDepartmentFactoryVerifiedContributorTagAdminData =
     deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("ERC721TagManager"),
+      abi: tagManagerAbi,
       functionName: "grantRole",
       args: [
         deployer.viem.zeroHash, // Default Admin Role
         departmentFactory.departmentFactory,
       ],
     });
-  const tagFirstVerifiedContributorDisputeData =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("ERC721TagManager"),
-      functionName: "grantRole",
-      args: [
-        deployer.viem.keccak256(deployer.viem.toBytes(DepartmentTags.Dispute)),
-        departmentFactory.departmentFactory,
-      ],
-    });
-  const tagFirstVerifiedContributorCoreMemberData =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("ERC721TagManager"),
-      functionName: "grantRole",
-      args: [
-        deployer.viem.keccak256(
-          deployer.viem.toBytes(DepartmentTags.CoreMember)
-        ),
-        departmentFactory.departmentFactory,
-      ],
-    });
-  const tagFirstVerifiedContributorExpertData =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("ERC721TagManager"),
-      functionName: "grantRole",
-      args: [
-        deployer.viem.keccak256(deployer.viem.toBytes(DepartmentTags.Expert)),
-        departmentFactory.departmentFactory,
-      ],
-    });
+  const grantOpenmeshAdminVerifiedContributorDepartmentTagDatas =
+    tagsToGrant.map((tag) =>
+      deployer.viem.encodeFunctionData({
+        abi: tagManagerAbi,
+        functionName: "grantRole",
+        args: [
+          deployer.viem.keccak256(deployer.viem.toBytes(tag)),
+          settings.smartAccounts.openmeshAdmin.admin,
+        ],
+      })
+    );
+  const tagFirstVerifiedContributorDatas = initialVerifiedContributors
+    .map((initialVerifiedContributor, i) =>
+      initialVerifiedContributor.tags.map((tag) =>
+        deployer.viem.encodeFunctionData({
+          abi: tagManagerAbi,
+          functionName: "addTag",
+          args: [
+            BigInt(i),
+            deployer.viem.keccak256(deployer.viem.toBytes(tag)),
+          ],
+        })
+      )
+    )
+    .flat();
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
-  const grantDepartmentOwnerVerifiedContributorAdminCall =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
-      functionName: "performCall",
-      args: [
-        verifiedContributor.verifiedContributor,
-        BigInt(0),
-        grantDepartmentOwnerVerifiedContributorAdminData,
-      ],
-    });
-  const grantDepartmentOwnerVerifiedContributorMintingCall =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
-      functionName: "performCall",
-      args: [
-        verifiedContributor.verifiedContributor,
-        BigInt(0),
-        grantDepartmentOwnerVerifiedContributorMintingData,
-      ],
-    });
-  const grantDepartmentOwnerVerifiedContributorBurningCall =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
-      functionName: "performCall",
-      args: [
-        verifiedContributor.verifiedContributor,
-        BigInt(0),
-        grantDepartmentOwnerVerifiedContributorBurningData,
-      ],
-    });
+  const openmeshAdminAbi = await deployer.getAbi("OpenmeshAdmin");
+  const grantDepartmentOwnerVerifiedContributorAdminCalls =
+    grantDepartmentOwnerVerifiedContributorRoleDatas.map(
+      (grantDepartmentOwnerVerifiedContributorRoleData) =>
+        deployer.viem.encodeFunctionData({
+          abi: openmeshAdminAbi,
+          functionName: "performCall",
+          args: [
+            verifiedContributor.verifiedContributor,
+            BigInt(0),
+            grantDepartmentOwnerVerifiedContributorRoleData,
+          ],
+        })
+    );
   const grantOpenmeshAdminVerifiedContributorMintingCall =
     deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
+      abi: openmeshAdminAbi,
       functionName: "performCall",
       args: [
         verifiedContributor.verifiedContributor,
@@ -277,18 +263,21 @@ export async function deployDepartments(
         grantOpenmeshAdminVerifiedContributorMintingData,
       ],
     });
-  const mintFirstVerifiedContributorCall = deployer.viem.encodeFunctionData({
-    abi: await deployer.getAbi("OpenmeshAdmin"),
-    functionName: "performCall",
-    args: [
-      verifiedContributor.verifiedContributor,
-      BigInt(0),
-      mintFirstVerifiedContributorData,
-    ],
-  });
+  const mintFirstVerifiedContributorCalls =
+    mintFirstVerifiedContributorDatas.map((mintFirstVerifiedContributorData) =>
+      deployer.viem.encodeFunctionData({
+        abi: openmeshAdminAbi,
+        functionName: "performCall",
+        args: [
+          verifiedContributor.verifiedContributor,
+          BigInt(0),
+          mintFirstVerifiedContributorData,
+        ],
+      })
+    );
   const grantDepartmentFactoryVerifiedContributorTagAdminCall =
     deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
+      abi: openmeshAdminAbi,
       functionName: "performCall",
       args: [
         verifiedContributorTagManager,
@@ -296,52 +285,45 @@ export async function deployDepartments(
         grantDepartmentFactoryVerifiedContributorTagAdminData,
       ],
     });
-  const tagFirstVerifiedContributorDisputeCall =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
-      functionName: "performCall",
-      args: [
-        verifiedContributorTagManager,
-        BigInt(0),
-        tagFirstVerifiedContributorDisputeData,
-      ],
-    });
-  const tagFirstVerifiedContributorCoreMemberCall =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
-      functionName: "performCall",
-      args: [
-        verifiedContributorTagManager,
-        BigInt(0),
-        tagFirstVerifiedContributorCoreMemberData,
-      ],
-    });
-  const tagFirstVerifiedContributorExpertCall =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("OpenmeshAdmin"),
-      functionName: "performCall",
-      args: [
-        verifiedContributorTagManager,
-        BigInt(0),
-        tagFirstVerifiedContributorExpertData,
-      ],
-    });
+  const grantOpenmeshAdminVerifiedContributorDepartmentTagCalls =
+    grantOpenmeshAdminVerifiedContributorDepartmentTagDatas.map(
+      (grantOpenmeshAdminVerifiedContributorDepartmentTagData) =>
+        deployer.viem.encodeFunctionData({
+          abi: openmeshAdminAbi,
+          functionName: "performCall",
+          args: [
+            verifiedContributorTagManager,
+            BigInt(0),
+            grantOpenmeshAdminVerifiedContributorDepartmentTagData,
+          ],
+        })
+    );
+  const tagFirstVerifiedContributorDisputeCalls =
+    tagFirstVerifiedContributorDatas.map(
+      (tagFirstVerifiedContributorCoreMemberData) =>
+        deployer.viem.encodeFunctionData({
+          abi: openmeshAdminAbi,
+          functionName: "performCall",
+          args: [
+            verifiedContributorTagManager,
+            BigInt(0),
+            tagFirstVerifiedContributorCoreMemberData,
+          ],
+        })
+    );
   await deployer.execute({
-    id: "GrantDepartmentAccessControlRoles",
+    id: "GrantDepartmentAccessControlRolesAndMintInitialVerifiedContributors",
     abi: "OpenmeshAdmin",
     to: settings.smartAccounts.openmeshAdmin.admin,
     function: "multicall",
     args: [
       [
-        grantDepartmentOwnerVerifiedContributorAdminCall,
-        grantDepartmentOwnerVerifiedContributorMintingCall,
-        grantDepartmentOwnerVerifiedContributorBurningCall,
+        ...grantDepartmentOwnerVerifiedContributorAdminCalls,
         grantOpenmeshAdminVerifiedContributorMintingCall,
-        mintFirstVerifiedContributorCall,
+        ...mintFirstVerifiedContributorCalls,
         grantDepartmentFactoryVerifiedContributorTagAdminCall,
-        tagFirstVerifiedContributorDisputeCall,
-        tagFirstVerifiedContributorCoreMemberCall,
-        tagFirstVerifiedContributorExpertCall,
+        ...grantOpenmeshAdminVerifiedContributorDepartmentTagCalls,
+        ...tagFirstVerifiedContributorDisputeCalls,
       ],
     ],
     chainId: settings.chainId,
