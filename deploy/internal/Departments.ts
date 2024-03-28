@@ -5,7 +5,7 @@ import {
   VerifiedContributorDeployment,
   deploy as verifiedContributorDeploy,
 } from "../../lib/verified-contributor/deploy/deploy";
-import { deploy as optimisticActionsDeploy } from "../../lib/optimistic-actions/deploy/deploy";
+import { deploy as trustlessActionsDeploy } from "../../lib/trustless-actions/deploy/deploy";
 import { deploy as aragonTagVotingDeploy } from "../../lib/aragon-tag-voting/deploy/deploy";
 import {
   deployDepartmentFactory,
@@ -110,8 +110,11 @@ export async function deployDepartments(
     .then((deployment) => deployment.address);
   deployer.finishContext();
   deployer.startContext("lib/optimistic-actions");
-  const optimisticActions = await optimisticActionsDeploy(deployer, {
+  const trustlessActions = await trustlessActionsDeploy(deployer, {
     optimisticActionsSettings: {
+      chainId: settings.chainId,
+    },
+    pessimisticActionsSettings: {
       chainId: settings.chainId,
     },
     // forceRedeploy: false,
@@ -140,7 +143,7 @@ export async function deployDepartments(
     tagVotingRepo: aragonTagVoting.tagVotingRepo,
     trustlessManagement: verifiedContributorTagTrustlessManagement,
     addressTrustlessManagement: addressTrustlessManagement,
-    optimisticActions: optimisticActions.optimisticActions,
+    optimisticActions: trustlessActions.optimisticActions,
     openRD: settings.openRD.openRD.tasks,
     departmentOwnerSettings: {
       metadata: "0x",

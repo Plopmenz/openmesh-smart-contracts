@@ -40,9 +40,6 @@
 [submodule "lib/trustless-management"]
 	path = lib/trustless-management
 	url = https://github.com/Plopmenz/trustless-management
-[submodule "lib/optimistic-actions"]
-	path = lib/optimistic-actions
-	url = https://github.com/Plopmenz/optimistic-actions
 [submodule "lib/osx-commons"]
 	path = lib/osx-commons
 	url = https://github.com/aragon/osx-commons
@@ -52,3 +49,6 @@
 [submodule "lib/crosschain-account"]
 	path = lib/crosschain-account
 	url = https://github.com/Plopmenz/crosschain-account
+[submodule "lib/trustless-actions"]
+	path = lib/trustless-actions
+	url = https://github.com/Plopmenz/trustless-actions
