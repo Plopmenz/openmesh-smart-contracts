@@ -188,11 +188,11 @@ export async function deployDepartments(
     },
   ];
   const mintFirstVerifiedContributorDatas = initialVerifiedContributors.map(
-    (initialVerifiedContributor) =>
+    (initialVerifiedContributor, i) =>
       deployer.viem.encodeFunctionData({
         abi: verifiedContributorAbi,
         functionName: "mint",
-        args: [initialVerifiedContributor.address, BigInt(0)],
+        args: [initialVerifiedContributor.address, BigInt(i)],
       })
   );
   deployer.finishContext();
