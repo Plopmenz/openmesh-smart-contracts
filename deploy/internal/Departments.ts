@@ -109,7 +109,7 @@ export async function deployDepartments(
     })
     .then((deployment) => deployment.address);
   deployer.finishContext();
-  deployer.startContext("lib/optimistic-actions");
+  deployer.startContext("lib/trustless-actions");
   const trustlessActions = await trustlessActionsDeploy(deployer, {
     optimisticActionsSettings: {
       chainId: settings.chainId,

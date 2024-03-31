@@ -19,6 +19,7 @@ import {
   OpenClaimingDeployment,
   deploy as openClaimingDeploy,
 } from "../../lib/open-claiming/deploy/deploy";
+import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
 import { getChainSettings } from "../deploy";
 
 export interface DeployOpenmeshTokennomicsSettings {
@@ -125,7 +126,7 @@ export async function deployOpenmeshTokennomics(
     });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
-  const openmeshAdminAbi = await deployer.getAbi("OpenmeshAdmin");
+  const openmeshAdminAbi = SmartAccountBaseContract.abi; // await deployer.getAbi("OpenmeshAdmin");
   const grantOpenMintingCalls = grantOpenMintingDatas.map(
     (grantOpenMintingData) =>
       deployer.viem.encodeFunctionData({
@@ -151,7 +152,7 @@ export async function deployOpenmeshTokennomics(
     });
   await deployer.execute({
     id: "GrantTokennomicsAccessControlRoles",
-    abi: "OpenmeshAdmin",
+    abi: [...openmeshAdminAbi],
     to: settings.smartAccounts.openmeshAdmin.admin,
     function: "multicall",
     args: [
