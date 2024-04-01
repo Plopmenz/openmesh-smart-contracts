@@ -1,16 +1,17 @@
 import { Deployer, Address } from "../../web3webdeploy/types";
-import { SmartAccountsDeployment } from "./SmartAccounts";
+import { getChainSettings } from "../deploy";
 
 import {
   VerifiedContributorDeployment,
   deploy as verifiedContributorDeploy,
 } from "../../lib/verified-contributor/deploy/deploy";
-import { deploy as trustlessActionsDeploy } from "../../lib/trustless-actions/deploy/deploy";
+import { deployOptimisticActions } from "../../lib/trustless-actions/deploy/internal/OptimisticActions";
 import { deploy as aragonTagVotingDeploy } from "../../lib/aragon-tag-voting/deploy/deploy";
 import {
   deployDepartmentFactory,
   DeployDepartmentFactoryReturn,
 } from "../../lib/openmesh-department/deploy/internal/DepartmentFactory";
+import { deploySmartAccountDepartmentInstaller } from "../../lib/openmesh-department/deploy/internal/SmartAccountDepartmentInstaller";
 import {
   deployDepartment,
   DeployDepartmentReturn,
@@ -20,8 +21,11 @@ import {
   SupportedVersions,
   getNetworkDeploymentForVersion,
 } from "../../lib/osx-commons/configs/src";
+import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
+import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Mumbai/SmartAccountBaseInstaller";
+import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/Mumbai/SmartAccountTrustlessExecution";
+import { SmartAccountsDeployment } from "./SmartAccounts";
 import { OpenRDDeployment } from "./OpenRD";
-import { getChainSettings } from "../deploy";
 
 export enum DepartmentTags {
   Dispute = "DISPUTE",
@@ -34,6 +38,7 @@ export interface DeployDepartmentsSettings {
   openRD: OpenRDDeployment;
   chainId: number;
   aragonNetwork: SupportedNetworks;
+  addressTrustlessManagement: Address;
 }
 
 export interface DepartmentsDeployment {
@@ -43,6 +48,7 @@ export interface DepartmentsDeployment {
   verifiedContributorTagTrustlessManagement: Address;
   departmentDaos: {
     departmentFactory: DeployDepartmentFactoryReturn;
+    smartAccountDepartmentInstaller: Address;
     disputeDepartment: DeployDepartmentReturn;
     coreMemberDepartment: DeployDepartmentReturn;
     expertDepartment: DeployDepartmentReturn;
@@ -64,7 +70,6 @@ export async function deployDepartments(
   deployer.startContext("lib/verified-contributor");
   const verifiedContributor = await verifiedContributorDeploy(deployer, {
     verifiedContributorSettings: { chainId: settings.chainId },
-    // forceRedeploy: false,
   });
   deployer.finishContext();
   deployer.startContext("lib/tag-manager");
@@ -82,14 +87,6 @@ export async function deployDepartments(
     .then((deployment) => deployment.address);
   deployer.finishContext();
   deployer.startContext("lib/trustless-management");
-  const addressTrustlessManagement = await deployer
-    .deploy({
-      id: "AddressTrustlessManagement",
-      contract: "AddressTrustlessManagement",
-      chainId: settings.chainId,
-      ...getChainSettings(settings.chainId),
-    })
-    .then((deployment) => deployment.address);
   const verifiedContributorCountTrustlessManagement = await deployer
     .deploy({
       id: "VerifiedContributorCountTrustlessManagement",
@@ -110,14 +107,8 @@ export async function deployDepartments(
     .then((deployment) => deployment.address);
   deployer.finishContext();
   deployer.startContext("lib/trustless-actions");
-  const trustlessActions = await trustlessActionsDeploy(deployer, {
-    optimisticActionsSettings: {
-      chainId: settings.chainId,
-    },
-    pessimisticActionsSettings: {
-      chainId: settings.chainId,
-    },
-    // forceRedeploy: false,
+  const optimisticActions = await deployOptimisticActions(deployer, {
+    chainId: settings.chainId,
   });
   deployer.finishContext();
   deployer.startContext("lib/aragon-tag-voting");
@@ -132,7 +123,6 @@ export async function deployDepartments(
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
     },
-    // forceRedeploy: false,
   });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-department");
@@ -141,15 +131,14 @@ export async function deployDepartments(
       .address as Address,
     tagManager: verifiedContributorTagManager,
     tagVotingRepo: aragonTagVoting.tagVotingRepo,
-    trustlessManagement: verifiedContributorTagTrustlessManagement,
-    addressTrustlessManagement: addressTrustlessManagement,
-    optimisticActions: trustlessActions.optimisticActions,
-    openRD: settings.openRD.openRD.tasks,
     departmentOwnerSettings: {
       metadata: "0x",
       tokenVoting: aragonDeployment.TokenVotingRepoProxy.address as Address,
       token: verifiedContributor.verifiedContributor,
       trustlessManagement: verifiedContributorCountTrustlessManagement,
+      role: BigInt(1),
+      addressTrustlessManagement: settings.addressTrustlessManagement,
+      optimisticActions: optimisticActions,
     },
     chainId: settings.chainId,
     ...getChainSettings(settings.chainId),
@@ -242,7 +231,7 @@ export async function deployDepartments(
     .flat();
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
-  const openmeshAdminAbi = await deployer.getAbi("OpenmeshAdmin");
+  const openmeshAdminAbi = [...SmartAccountBaseContract.abi]; // await deployer.getAbi("OpenmeshAdmin");
   const grantDepartmentOwnerVerifiedContributorAdminCalls =
     grantDepartmentOwnerVerifiedContributorRoleDatas.map(
       (grantDepartmentOwnerVerifiedContributorRoleData) =>
@@ -316,7 +305,7 @@ export async function deployDepartments(
     );
   await deployer.execute({
     id: "GrantDepartmentAccessControlRolesAndMintInitialVerifiedContributors",
-    abi: "OpenmeshAdmin",
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.openmeshAdmin.admin,
     function: "multicall",
     args: [
@@ -363,35 +352,91 @@ export async function deployDepartments(
     chainId: settings.chainId,
     ...getChainSettings(settings.chainId),
   });
+
+  const smartAccountDepartmentInstaller =
+    await deploySmartAccountDepartmentInstaller(deployer, {
+      smartAccountTrustlessExecution:
+        SmartAccountTrustlessExecutionContract.address,
+      tagTrustlessManagement: verifiedContributorTagTrustlessManagement,
+      addressTrustlessManagement: settings.addressTrustlessManagement,
+      optimisticActions: optimisticActions,
+      openRD: settings.openRD.openRD.tasks,
+    });
+  const smartAccountDepartmentInstallerAbi = await deployer.getAbi(
+    "SmartAccountDepartmentInstaller"
+  );
+  const smartAccountDepartmentInstallCall = (tag: DepartmentTags) => {
+    return deployer.viem.encodeFunctionData({
+      abi: openmeshAdminAbi,
+      functionName: "performDelegateCall",
+      args: [
+        smartAccountDepartmentInstaller,
+        deployer.viem.encodeFunctionData({
+          abi: smartAccountDepartmentInstallerAbi,
+          functionName: "install",
+          args: [deployer.viem.keccak256(deployer.viem.toBytes(tag))],
+        }),
+      ],
+    });
+  };
   deployer.finishContext();
 
   deployer.startContext("lib/openmesh-admin");
+  const transferOwnershipCall = (newOwner: Address) => {
+    return deployer.viem.encodeFunctionData({
+      abi: openmeshAdminAbi,
+      functionName: "performDelegateCall",
+      args: [
+        SmartAccountBaseInstallerContract.address,
+        deployer.viem.encodeFunctionData({
+          abi: SmartAccountBaseInstallerContract.abi,
+          functionName: "transferOwnership",
+          args: [newOwner],
+        }),
+      ],
+    });
+  };
   await deployer.execute({
-    id: "TransferDisputeSmartAccountOwnershipToDepartmentDAO",
-    abi: await deployer.getAbi("OpenmeshAdmin"),
+    id: "FinalizeDisputeSmartAccount",
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.departments.disputeDepartment,
-    function: "transferOwnership",
-    args: [disputeDepartment.dao],
+    function: "multicall",
+    args: [
+      [
+        smartAccountDepartmentInstallCall(DepartmentTags.Dispute),
+        transferOwnershipCall(disputeDepartment.dao),
+      ],
+    ],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
     ...getChainSettings(settings.chainId),
   });
   await deployer.execute({
-    id: "TransferCoreMemberSmartAccountOwnershipToDepartmentDAO",
-    abi: await deployer.getAbi("OpenmeshAdmin"),
+    id: "FinalizeCoreMemberSmartAccount",
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.departments.coreMemberDepartment,
-    function: "transferOwnership",
-    args: [coreMemberDepartment.dao],
+    function: "multicall",
+    args: [
+      [
+        smartAccountDepartmentInstallCall(DepartmentTags.CoreMember),
+        transferOwnershipCall(coreMemberDepartment.dao),
+      ],
+    ],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
     ...getChainSettings(settings.chainId),
   });
   await deployer.execute({
-    id: "TransferExpertSmartAccountOwnershipToDepartmentDAO",
-    abi: await deployer.getAbi("OpenmeshAdmin"),
+    id: "FinalizeExpertSmartAccount",
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.departments.expertDepartment,
-    function: "transferOwnership",
-    args: [expertDepartment.dao],
+    function: "multicall",
+    args: [
+      [
+        smartAccountDepartmentInstallCall(DepartmentTags.Expert),
+        transferOwnershipCall(expertDepartment.dao),
+      ],
+    ],
     chainId: settings.chainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
     ...getChainSettings(settings.chainId),
@@ -407,6 +452,7 @@ export async function deployDepartments(
       verifiedContributorTagTrustlessManagement,
     departmentDaos: {
       departmentFactory: departmentFactory,
+      smartAccountDepartmentInstaller: smartAccountDepartmentInstaller,
       disputeDepartment: disputeDepartment,
       coreMemberDepartment: coreMemberDepartment,
       expertDepartment: expertDepartment,

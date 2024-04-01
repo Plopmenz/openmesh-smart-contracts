@@ -1,12 +1,14 @@
 import { Deployer, Address } from "../../web3webdeploy/types";
-import { SmartAccountsDeployment } from "./SmartAccounts";
+import { getChainSettings } from "../deploy";
 
 import { deployCrossChainAccount } from "../../lib/crosschain-account/deploy/internal/CrossChainAccount";
 import {
   CCIPDeployments,
   Chains,
 } from "../../lib/crosschain-account/utils/ccip";
-import { getChainSettings } from "../deploy";
+import { SmartAccountsDeployment } from "./SmartAccounts";
+import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
+import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Mumbai/SmartAccountBaseInstaller";
 
 export interface DeployCrossChainDepartmentsSettings {
   smartAccounts: SmartAccountsDeployment;
@@ -52,32 +54,43 @@ export async function deployCrossChainDepartments(
   deployer.finishContext();
 
   deployer.startContext("lib/openmesh-admin");
+  const openmeshAdminAbi = [...SmartAccountBaseContract.abi]; // await deployer.getAbi("OpenmeshAdmin");
+  const transferOwnershipArgs = (newOwner: Address) => {
+    return [
+      SmartAccountBaseInstallerContract.address,
+      deployer.viem.encodeFunctionData({
+        abi: SmartAccountBaseInstallerContract.abi,
+        functionName: "transferOwnership",
+        args: [newOwner],
+      }),
+    ];
+  };
   await deployer.execute({
     id: "TransferDisputeSmartAccountOwnershipToCrossChainAccount",
-    abi: await deployer.getAbi("OpenmeshAdmin"),
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.departments.disputeDepartment,
-    function: "transferOwnership",
-    args: [disputeDepartment],
+    function: "performDelegateCall",
+    args: transferOwnershipArgs(disputeDepartment),
     chainId: settings.accountChainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
     ...getChainSettings(settings.accountChainId),
   });
   await deployer.execute({
     id: "TransferCoreMemberSmartAccountOwnershipToCrossChainAccount",
-    abi: await deployer.getAbi("OpenmeshAdmin"),
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.departments.coreMemberDepartment,
-    function: "transferOwnership",
-    args: [coreMemberDepartment],
+    function: "performDelegateCall",
+    args: transferOwnershipArgs(coreMemberDepartment),
     chainId: settings.accountChainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
     ...getChainSettings(settings.accountChainId),
   });
   await deployer.execute({
     id: "TransferExpertSmartAccountOwnershipToCrossChainAccount",
-    abi: await deployer.getAbi("OpenmeshAdmin"),
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.departments.expertDepartment,
-    function: "transferOwnership",
-    args: [expertDepartment],
+    function: "performDelegateCall",
+    args: transferOwnershipArgs(expertDepartment),
     chainId: settings.accountChainId,
     from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
     ...getChainSettings(settings.accountChainId),

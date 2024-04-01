@@ -2,6 +2,7 @@ import { Deployer } from "../../web3webdeploy/types";
 import { SmartAccountsDeployment } from "./SmartAccounts";
 import { UTCBlockchainDate } from "../../lib/openmesh-genesis/utils/timeUnits";
 import { Ether, ether } from "../../web3webdeploy/lib/etherUnits";
+import { getChainSettings } from "../deploy";
 
 import {
   OpenTokenDeployment,
@@ -20,7 +21,6 @@ import {
   deploy as openClaimingDeploy,
 } from "../../lib/open-claiming/deploy/deploy";
 import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
-import { getChainSettings } from "../deploy";
 
 export interface DeployOpenmeshTokennomicsSettings {
   smartAccounts: SmartAccountsDeployment;
@@ -44,7 +44,6 @@ export async function deployOpenmeshTokennomics(
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
     },
-    // forceRedeploy: false,
   });
   deployer.finishContext();
   deployer.startContext("lib/validator-pass");
@@ -53,7 +52,6 @@ export async function deployOpenmeshTokennomics(
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
     },
-    // forceRedeploy: false,
   });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-genesis");
@@ -73,7 +71,6 @@ export async function deployOpenmeshTokennomics(
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
     },
-    // forceRedeploy: false,
   });
   deployer.finishContext();
   deployer.startContext("lib/open-claiming");
@@ -87,7 +84,6 @@ export async function deployOpenmeshTokennomics(
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
     },
-    // forceRedeploy: false,
   });
   deployer.finishContext();
 
@@ -126,7 +122,7 @@ export async function deployOpenmeshTokennomics(
     });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
-  const openmeshAdminAbi = SmartAccountBaseContract.abi; // await deployer.getAbi("OpenmeshAdmin");
+  const openmeshAdminAbi = [...SmartAccountBaseContract.abi]; // await deployer.getAbi("OpenmeshAdmin");
   const grantOpenMintingCalls = grantOpenMintingDatas.map(
     (grantOpenMintingData) =>
       deployer.viem.encodeFunctionData({
@@ -152,7 +148,7 @@ export async function deployOpenmeshTokennomics(
     });
   await deployer.execute({
     id: "GrantTokennomicsAccessControlRoles",
-    abi: [...openmeshAdminAbi],
+    abi: openmeshAdminAbi,
     to: settings.smartAccounts.openmeshAdmin.admin,
     function: "multicall",
     args: [

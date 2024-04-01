@@ -51,6 +51,22 @@ export async function deploy(
   const polygonChainId = 80001;
   const aragonNetwork = SupportedNetworks.MUMBAI;
 
+  // Trustless management
+  deployer.startContext("lib/trustless-management");
+  const addressTrustlessManagement = await multiDeploy(
+    (chainId) =>
+      deployer
+        .deploy({
+          id: "AddressTrustlessManagement",
+          contract: "AddressTrustlessManagement",
+          chainId: chainId,
+          ...getChainSettings(chainId),
+        })
+        .then((deployment) => deployment.address),
+    [ethereumChainId, polygonChainId]
+  );
+  deployer.finishContext();
+
   // OpenR&D
   const openRD = await deployOpenRD(deployer, {
     chains: [ethereumChainId, polygonChainId],
@@ -59,6 +75,8 @@ export async function deploy(
   // Smart accounts (single deterministic address to allow flexible control)
   const smartAccounts = await deploySmartAccounts(deployer, {
     chains: [ethereumChainId, polygonChainId],
+    openRD: openRD,
+    addressTrustlessManagement: addressTrustlessManagement,
   });
 
   // Openmesh token collections
@@ -73,6 +91,7 @@ export async function deploy(
     openRD: openRD,
     chainId: polygonChainId,
     aragonNetwork: aragonNetwork,
+    addressTrustlessManagement: addressTrustlessManagement,
   });
 
   // Ethereum accounts for the polygon departments
