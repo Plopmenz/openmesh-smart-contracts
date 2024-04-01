@@ -121,7 +121,7 @@ export async function deploySmartAccounts(
         smartAccountTaskDisputesInstaller,
         deployer.viem.encodeFunctionData({
           abi: smartAccountTaskDisputesInstallerAbi,
-          functionName: "install",
+          functionName: "fullInstall",
           args: [cost],
         }),
       ],
