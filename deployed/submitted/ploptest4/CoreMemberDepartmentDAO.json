@@ -1,0 +1,27 @@
+{
+  "type": "function",
+  "id": "CoreMemberDepartmentDAO",
+  "batch": "ploptest4",
+  "batchIndex": 40,
+  "functionName": "createDepartment",
+  "functionArgs": [
+    "",
+    "0x2b18f8c878829978891f4205c0cac388a620dd017c9d42349d02384ac6773a05"
+  ],
+  "to": "0x90962a3c16246D20a617D02dc88fc13b4128d7ad",
+  "value": "0",
+  "data": "0xe07564c100000000000000000000000000000000000000000000000000000000000000402b18f8c878829978891f4205c0cac388a620dd017c9d42349d02384ac6773a050000000000000000000000000000000000000000000000000000000000000000",
+  "gas": "999072",
+  "from": "0xaF7E68bCb2Fc7295492A00177f14F59B92814e70",
+  "transactionSettings": {
+    "chainId": 80001,
+    "nonce": "698",
+    "baseFee": "1500000000",
+    "priorityFee": "1500000000"
+  },
+  "source": "/home/plopmenz/openmesh-smart-contracts/lib/openmesh-department",
+  "submitted": {
+    "transactionHash": "0xb7e1f04c9a5f2ece76469639a814e09486cf1a8ac9cad5874d91f61de273d788",
+    "date": "2024-04-01T20:43:05.284Z"
+  }
+}

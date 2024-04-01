@@ -1,0 +1,526 @@
+{
+  "type": "deployment",
+  "id": "AddressTrustlessManagement_11155111",
+  "batch": "ploptest4",
+  "batchIndex": 1,
+  "deploymentAddress": "0xA4C53225d7A3acE458Ec7FD25527072c01a8c95E",
+  "constructorArgs": [],
+  "to": "0x4e59b44847b379578588920ca78fbf26c0b4956c",
+  "value": "0",
+  "data": "0x0000000000000000000000000000000000000000000000706c6f7074657374346080806040523461001657610e41908161001b8239f35b5f80fdfe6080806040526004361015610012575f80fd5b5f3560e01c90816301ffc9a7146107e357508063502ff453146107905780635c97f4a21461075f5780635fb10911146106c05780638da5cb5b14610692578063c55b6bb714610608578063d45cfee914610592578063dabdb389146102c1578063dbe90fd114610213578063f2055f3a146101485763faf538be14610095575f80fd5b34610144577fd506fed53a1b46c1fb4e2fc79e33abffa00bfea8cd99eaaca69659784f17c8f46100c436610964565b9060018060a09694961b03600181861695865f525f6020526100ee60405f20918483541690610dd4565b5f888152910160209081526040808320858516845260020182529182902080546001600160a01b0319169386169390931790925580516001600160a01b039384168152929093169082015290819081015b0390a3005b5f80fd5b34610144577fa7e670f310a5e063128daa7601835dbb8b7d39a1ddc2ff39f020606f8a55c2b261013f61017a3661087d565b60018060a09896979395981b03600181881697885f525f6020526101a660405f20918483541690610dd4565b895f5201602052600460405f20016101be8686610ce3565b5f5260205260405f209082166bffffffffffffffffffffffff60a01b8254161790556040519384938491939290604091606084019560018060a01b03809316855263ffffffff60e01b16602085015216910152565b34610144577fc7dbfdfc0c1c87fea5c207495f0359337c9e4baa79e0eaacf0d27b8f38501ee661024236610964565b9060018060a09694961b03600181861695865f525f60205261026c60405f20918483541690610dd4565b5f888152910160209081526040808320858516845260010182529182902080546001600160a01b0319169386169390931790925580516001600160a01b0393841681529290931690820152908190810161013f565b34610144576080366003190112610144576102da610836565b60443567ffffffffffffffff8111610144576102fa90369060040161084c565b90916024353303610580576103138284602435846109f0565b1561056e576040516331c6fcc960e21b81527fad6f5459b4feccf3c0455f948de0009df2bfa75118ead6cb6c15aff95d6dd4e0600482015260606024820152915f8380610364606482018589610c76565b60643560448301520381836001600160a01b0387165af1918215610563575f935f9361040e575b506103b66103a86104049660405194606086526060860191610c76565b8381036020850152856108f4565b8360408401527f4c49b2129c9e70ff5dafdd52dd6cf1594dbbde7fcd50cd9327a78cad4b43e1b43393806024359460018060a01b0316930390a46040519283926040845260408401906108f4565b9060208301520390f35b943d94509250835f863e6104228486610bd8565b604085858101031261014457845167ffffffffffffffff811161014457848601601f82880101121561014457808601519067ffffffffffffffff821161054f576040519561047660208460051b0188610bd8565b828752602087019080890160208560051b858c01010111610144576020838a0101915b60208560051b858c01010183106104c05750505050602095909501519294506103b661038b565b825167ffffffffffffffff811161014457828b01858c018201603f01121561014457602081868d0101015167ffffffffffffffff811161054f5760405192610512601f8301601f191660200185610bd8565b818452848d01878e0184018301604001116101445783610542602095938f604088978c89809901930101016108d3565b8152019301929050610499565b634e487b7160e01b5f52604160045260245ffd5b6040513d5f823e3d90fd5b604051634ca8886760e01b8152600490fd5b60405163edfd939f60e01b8152600490fd5b34610144577f1fc96330cc75d69d1d0f0384fec006d3e6380575d8cab5e60965c75bafa247c261013f6105c43661087d565b60018060a09896979395981b03600181881697885f525f6020526105f060405f20918483541690610dd4565b895f5201602052600360405f20016101be8686610ce3565b3461014457604036600319011261014457610621610836565b6001600160a01b039060243582811691908290036101445781817fbf265e8326285a2747e33e54d5945f7111f2b5edb826eb8c08d4677779b3ff9793856020941695865f525f855261067c60405f2093845492831690610dd4565b6001600160a01b031916179055604051908152a2005b34610144575f36600319011261014457602060405173af7e68bcb2fc7295492a00177f14f59b92814e708152f35b34610144576060366003190112610144576106d9610836565b602435906044356001600160a01b0381811691829003610144577f49cee46ddb56bf0b542a1086997e9529b00a89eeb4c3c7cd85c8d3e2dccbbffc91600182610735602094871696875f525f865260405f209283541690610dd4565b865f5201825260405f20816bffffffffffffffffffffffff60a01b825416179055604051908152a3005b3461014457604036600319011261014457602061077a610836565b6040516001600160a01b03909116602435148152f35b34610144576060366003190112610144576107a9610836565b60443567ffffffffffffffff8111610144576020916107cf6107d992369060040161084c565b91602435906109f0565b6040519015158152f35b34610144576020366003190112610144576004359063ffffffff60e01b82168092036101445760209163151327d760e21b8114908115610825575b5015158152f35b6301ffc9a760e01b1490508361081e565b600435906001600160a01b038216820361014457565b9181601f840112156101445782359167ffffffffffffffff8311610144576020808501948460051b01011161014457565b60a0906003190112610144576001600160a01b036004358181168103610144579160243591604435818116810361014457916064356001600160e01b031981168103610144579160843590811681036101445790565b5f5b8381106108e45750505f910152565b81810151838201526020016108d5565b908082519081815260208091019281808460051b8301019501935f915b8483106109215750505050505090565b909192939495848080600193601f1980878303018852601f8c51610950815180928187528780880191016108d3565b011601019801930193019194939290610911565b6080906003190112610144576001600160a01b039060043582811681036101445791602435916044358281168103610144579160643590811681036101445790565b91908110156109c85760051b81013590605e1981360301821215610144570190565b634e487b7160e01b5f52603260045260245ffd5b356001600160a01b03811681036101445790565b909260018060a01b038092165f526020925f84526001946040926001845f2001825f528652835f20945f94600497600488019683895416905b858110610a4157505050505050505050505050600190565b610a54610a4f82888b6109a6565b6109dc565b610a5f82888b6109a6565b8581013590601e198136030182121561014457019081359167ffffffffffffffff831161014457850190823603821361014457610ab7928e923563ffffffff60e01b9182821694808210610bc4575b50505050610ce3565b805f52898452610ad98989610ad3858b8b8b5f205416946109a6565b91610d2e565b8015610b90575b610b7f57610af9610af283898c6109a6565b8985610d2e565b159081610b49575b81610b23575b50610b13578b01610a29565b5050505050505050505050505f90565b90505f5260038a018352610b4285855f20541688610ad3848a8d6109a6565b155f610b07565b905085610b5a610a4f848a8d6109a6565b165f528c8b018452610b788989610ad3858b8b8b5f205416946109a6565b1590610b01565b505050505050505050505050505f90565b5085610ba0610a4f848a8d6109a6565b165f5260028b018452610bbf8989610ad3858b8b8b5f205416946109a6565b610ae0565b0360031b82901b161691505f808f80610aae565b90601f8019910116810190811067ffffffffffffffff82111761054f57604052565b80356001600160a01b03811690819003610144578252602081013560208301526040810135601e19823603018112156101445701906020823592019167ffffffffffffffff8111610144578036038313610144578060809360606040850152816060850152848401375f828201840152601f01601f1916010190565b91908181815260208091019260208360051b8201019480945f925b858410610ca2575050505050505090565b90919293949596601f198282030183528735605e19853603018112156101445786610cd260019387839401610bfa565b990193019401929195949390610c91565b6001600160a01b039160209190911b73ffffffffffffffffffffffffffffffff000000001660e09190911c01818111610d1a571690565b634e487b7160e01b5f52601160045260245ffd5b6001600160a01b0390811692908315610dcc578314610dc457610d779260209260405180958194829363017776e360e01b84526004840152604060248401526044830190610bfa565b03915afa908115610563575f91610d8c575090565b90506020813d602011610dbc575b81610da760209383610bd8565b81010312610144575180151581036101445790565b3d9150610d9a565b505050600190565b505050505f90565b6001600160a01b0391821680610e005750163303610dee57565b604051636587b01b60e11b8152600490fd5b9150503303610dee5756fea26469706673582212209e9fa0825ee0e1967dfaf82fc99e388e0afa753da36ce07907beeb321b89de8f64736f6c63430008170033",
+  "gas": "855678",
+  "from": "0xaF7E68bCb2Fc7295492A00177f14F59B92814e70",
+  "transactionSettings": {
+    "chainId": 11155111,
+    "nonce": "159",
+    "baseFee": "1500000000",
+    "priorityFee": "1500000000"
+  },
+  "salt": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ploptest4",
+  "artifact": {
+    "abi": [
+      {
+        "type": "function",
+        "name": "asDAO",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_role", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "_actions",
+            "type": "tuple[]",
+            "internalType": "struct IDAO.Action[]",
+            "components": [
+              { "name": "to", "type": "address", "internalType": "address" },
+              { "name": "value", "type": "uint256", "internalType": "uint256" },
+              { "name": "data", "type": "bytes", "internalType": "bytes" }
+            ]
+          },
+          {
+            "name": "_failureMap",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "returnValues",
+            "type": "bytes[]",
+            "internalType": "bytes[]"
+          },
+          { "name": "failureMap", "type": "uint256", "internalType": "uint256" }
+        ],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "changeFullAccess",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_role", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "_permissionChecker",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "changeFunctionAccess",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_role", "type": "uint256", "internalType": "uint256" },
+          { "name": "_zone", "type": "address", "internalType": "address" },
+          {
+            "name": "_functionSelector",
+            "type": "bytes4",
+            "internalType": "bytes4"
+          },
+          {
+            "name": "_permissionChecker",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "changeFunctionBlacklist",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_role", "type": "uint256", "internalType": "uint256" },
+          { "name": "_zone", "type": "address", "internalType": "address" },
+          {
+            "name": "_functionSelector",
+            "type": "bytes4",
+            "internalType": "bytes4"
+          },
+          {
+            "name": "_permissionChecker",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "changeZoneAccess",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_role", "type": "uint256", "internalType": "uint256" },
+          { "name": "_zone", "type": "address", "internalType": "address" },
+          {
+            "name": "_permissionChecker",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "changeZoneBlacklist",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_role", "type": "uint256", "internalType": "uint256" },
+          { "name": "_zone", "type": "address", "internalType": "address" },
+          {
+            "name": "_permissionChecker",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "hasRole",
+        "inputs": [
+          { "name": "_account", "type": "address", "internalType": "address" },
+          { "name": "_address", "type": "uint256", "internalType": "uint256" }
+        ],
+        "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+        "stateMutability": "pure"
+      },
+      {
+        "type": "function",
+        "name": "isAllowed",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_role", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "_actions",
+            "type": "tuple[]",
+            "internalType": "struct IDAO.Action[]",
+            "components": [
+              { "name": "to", "type": "address", "internalType": "address" },
+              { "name": "value", "type": "uint256", "internalType": "uint256" },
+              { "name": "data", "type": "bytes", "internalType": "bytes" }
+            ]
+          }
+        ],
+        "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "owner",
+        "inputs": [],
+        "outputs": [
+          { "name": "", "type": "address", "internalType": "address" }
+        ],
+        "stateMutability": "pure"
+      },
+      {
+        "type": "function",
+        "name": "setAdmin",
+        "inputs": [
+          {
+            "name": "_dao",
+            "type": "address",
+            "internalType": "contract IDAO"
+          },
+          { "name": "_admin", "type": "address", "internalType": "address" }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+      },
+      {
+        "type": "function",
+        "name": "supportsInterface",
+        "inputs": [
+          { "name": "_interfaceId", "type": "bytes4", "internalType": "bytes4" }
+        ],
+        "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+        "stateMutability": "view"
+      },
+      {
+        "type": "event",
+        "name": "AdminSet",
+        "inputs": [
+          {
+            "name": "dao",
+            "type": "address",
+            "indexed": true,
+            "internalType": "contract IDAO"
+          },
+          {
+            "name": "admin",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          }
+        ],
+        "anonymous": false
+      },
+      {
+        "type": "event",
+        "name": "Execution",
+        "inputs": [
+          {
+            "name": "dao",
+            "type": "address",
+            "indexed": true,
+            "internalType": "contract IDAO"
+          },
+          {
+            "name": "role",
+            "type": "uint256",
+            "indexed": true,
+            "internalType": "uint256"
+          },
+          {
+            "name": "sender",
+            "type": "address",
+            "indexed": true,
+            "internalType": "address"
+          },
+          {
+            "name": "actions",
+            "type": "tuple[]",
+            "indexed": false,
+            "internalType": "struct IDAO.Action[]",
+            "components": [
+              { "name": "to", "type": "address", "internalType": "address" },
+              { "name": "value", "type": "uint256", "internalType": "uint256" },
+              { "name": "data", "type": "bytes", "internalType": "bytes" }
+            ]
+          },
+          {
+            "name": "returnValues",
+            "type": "bytes[]",
+            "indexed": false,
+            "internalType": "bytes[]"
+          },
+          {
+            "name": "failureMap",
+            "type": "uint256",
+            "indexed": false,
+            "internalType": "uint256"
+          }
+        ],
+        "anonymous": false
+      },
+      {
+        "type": "event",
+        "name": "FullAccessChanged",
+        "inputs": [
+          {
+            "name": "dao",
+            "type": "address",
+            "indexed": true,
+            "internalType": "contract IDAO"
+          },
+          {
+            "name": "role",
+            "type": "uint256",
+            "indexed": true,
+            "internalType": "uint256"
+          },
+          {
+            "name": "permissionChecker",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          }
+        ],
+        "anonymous": false
+      },
+      {
+        "type": "event",
+        "name": "FunctionAccessChanged",
+        "inputs": [
+          {
+            "name": "dao",
+            "type": "address",
+            "indexed": true,
+            "internalType": "contract IDAO"
+          },
+          {
+            "name": "role",
+            "type": "uint256",
+            "indexed": true,
+            "internalType": "uint256"
+          },
+          {
+            "name": "zone",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          },
+          {
+            "name": "functionSelector",
+            "type": "bytes4",
+            "indexed": false,
+            "internalType": "bytes4"
+          },
+          {
+            "name": "permissionChecker",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          }
+        ],
+        "anonymous": false
+      },
+      {
+        "type": "event",
+        "name": "FunctionBlacklistChanged",
+        "inputs": [
+          {
+            "name": "dao",
+            "type": "address",
+            "indexed": true,
+            "internalType": "contract IDAO"
+          },
+          {
+            "name": "role",
+            "type": "uint256",
+            "indexed": true,
+            "internalType": "uint256"
+          },
+          {
+            "name": "zone",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          },
+          {
+            "name": "functionSelector",
+            "type": "bytes4",
+            "indexed": false,
+            "internalType": "bytes4"
+          },
+          {
+            "name": "permissionChecker",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          }
+        ],
+        "anonymous": false
+      },
+      {
+        "type": "event",
+        "name": "ZoneAccessChanged",
+        "inputs": [
+          {
+            "name": "dao",
+            "type": "address",
+            "indexed": true,
+            "internalType": "contract IDAO"
+          },
+          {
+            "name": "role",
+            "type": "uint256",
+            "indexed": true,
+            "internalType": "uint256"
+          },
+          {
+            "name": "zone",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          },
+          {
+            "name": "permissionChecker",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          }
+        ],
+        "anonymous": false
+      },
+      {
+        "type": "event",
+        "name": "ZoneBlacklistChanged",
+        "inputs": [
+          {
+            "name": "dao",
+            "type": "address",
+            "indexed": true,
+            "internalType": "contract IDAO"
+          },
+          {
+            "name": "role",
+            "type": "uint256",
+            "indexed": true,
+            "internalType": "uint256"
+          },
+          {
+            "name": "zone",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          },
+          {
+            "name": "permissionChecker",
+            "type": "address",
+            "indexed": false,
+            "internalType": "address"
+          }
+        ],
+        "anonymous": false
+      },
+      { "type": "error", "name": "AccessDenied", "inputs": [] },
+      { "type": "error", "name": "SenderDoesNotHaveRole", "inputs": [] },
+      { "type": "error", "name": "SenderIsNotAdmin", "inputs": [] }
+    ],
+    "bytecode": "0x6080806040523461001657610e41908161001b8239f35b5f80fdfe6080806040526004361015610012575f80fd5b5f3560e01c90816301ffc9a7146107e357508063502ff453146107905780635c97f4a21461075f5780635fb10911146106c05780638da5cb5b14610692578063c55b6bb714610608578063d45cfee914610592578063dabdb389146102c1578063dbe90fd114610213578063f2055f3a146101485763faf538be14610095575f80fd5b34610144577fd506fed53a1b46c1fb4e2fc79e33abffa00bfea8cd99eaaca69659784f17c8f46100c436610964565b9060018060a09694961b03600181861695865f525f6020526100ee60405f20918483541690610dd4565b5f888152910160209081526040808320858516845260020182529182902080546001600160a01b0319169386169390931790925580516001600160a01b039384168152929093169082015290819081015b0390a3005b5f80fd5b34610144577fa7e670f310a5e063128daa7601835dbb8b7d39a1ddc2ff39f020606f8a55c2b261013f61017a3661087d565b60018060a09896979395981b03600181881697885f525f6020526101a660405f20918483541690610dd4565b895f5201602052600460405f20016101be8686610ce3565b5f5260205260405f209082166bffffffffffffffffffffffff60a01b8254161790556040519384938491939290604091606084019560018060a01b03809316855263ffffffff60e01b16602085015216910152565b34610144577fc7dbfdfc0c1c87fea5c207495f0359337c9e4baa79e0eaacf0d27b8f38501ee661024236610964565b9060018060a09694961b03600181861695865f525f60205261026c60405f20918483541690610dd4565b5f888152910160209081526040808320858516845260010182529182902080546001600160a01b0319169386169390931790925580516001600160a01b0393841681529290931690820152908190810161013f565b34610144576080366003190112610144576102da610836565b60443567ffffffffffffffff8111610144576102fa90369060040161084c565b90916024353303610580576103138284602435846109f0565b1561056e576040516331c6fcc960e21b81527fad6f5459b4feccf3c0455f948de0009df2bfa75118ead6cb6c15aff95d6dd4e0600482015260606024820152915f8380610364606482018589610c76565b60643560448301520381836001600160a01b0387165af1918215610563575f935f9361040e575b506103b66103a86104049660405194606086526060860191610c76565b8381036020850152856108f4565b8360408401527f4c49b2129c9e70ff5dafdd52dd6cf1594dbbde7fcd50cd9327a78cad4b43e1b43393806024359460018060a01b0316930390a46040519283926040845260408401906108f4565b9060208301520390f35b943d94509250835f863e6104228486610bd8565b604085858101031261014457845167ffffffffffffffff811161014457848601601f82880101121561014457808601519067ffffffffffffffff821161054f576040519561047660208460051b0188610bd8565b828752602087019080890160208560051b858c01010111610144576020838a0101915b60208560051b858c01010183106104c05750505050602095909501519294506103b661038b565b825167ffffffffffffffff811161014457828b01858c018201603f01121561014457602081868d0101015167ffffffffffffffff811161054f5760405192610512601f8301601f191660200185610bd8565b818452848d01878e0184018301604001116101445783610542602095938f604088978c89809901930101016108d3565b8152019301929050610499565b634e487b7160e01b5f52604160045260245ffd5b6040513d5f823e3d90fd5b604051634ca8886760e01b8152600490fd5b60405163edfd939f60e01b8152600490fd5b34610144577f1fc96330cc75d69d1d0f0384fec006d3e6380575d8cab5e60965c75bafa247c261013f6105c43661087d565b60018060a09896979395981b03600181881697885f525f6020526105f060405f20918483541690610dd4565b895f5201602052600360405f20016101be8686610ce3565b3461014457604036600319011261014457610621610836565b6001600160a01b039060243582811691908290036101445781817fbf265e8326285a2747e33e54d5945f7111f2b5edb826eb8c08d4677779b3ff9793856020941695865f525f855261067c60405f2093845492831690610dd4565b6001600160a01b031916179055604051908152a2005b34610144575f36600319011261014457602060405173af7e68bcb2fc7295492a00177f14f59b92814e708152f35b34610144576060366003190112610144576106d9610836565b602435906044356001600160a01b0381811691829003610144577f49cee46ddb56bf0b542a1086997e9529b00a89eeb4c3c7cd85c8d3e2dccbbffc91600182610735602094871696875f525f865260405f209283541690610dd4565b865f5201825260405f20816bffffffffffffffffffffffff60a01b825416179055604051908152a3005b3461014457604036600319011261014457602061077a610836565b6040516001600160a01b03909116602435148152f35b34610144576060366003190112610144576107a9610836565b60443567ffffffffffffffff8111610144576020916107cf6107d992369060040161084c565b91602435906109f0565b6040519015158152f35b34610144576020366003190112610144576004359063ffffffff60e01b82168092036101445760209163151327d760e21b8114908115610825575b5015158152f35b6301ffc9a760e01b1490508361081e565b600435906001600160a01b038216820361014457565b9181601f840112156101445782359167ffffffffffffffff8311610144576020808501948460051b01011161014457565b60a0906003190112610144576001600160a01b036004358181168103610144579160243591604435818116810361014457916064356001600160e01b031981168103610144579160843590811681036101445790565b5f5b8381106108e45750505f910152565b81810151838201526020016108d5565b908082519081815260208091019281808460051b8301019501935f915b8483106109215750505050505090565b909192939495848080600193601f1980878303018852601f8c51610950815180928187528780880191016108d3565b011601019801930193019194939290610911565b6080906003190112610144576001600160a01b039060043582811681036101445791602435916044358281168103610144579160643590811681036101445790565b91908110156109c85760051b81013590605e1981360301821215610144570190565b634e487b7160e01b5f52603260045260245ffd5b356001600160a01b03811681036101445790565b909260018060a01b038092165f526020925f84526001946040926001845f2001825f528652835f20945f94600497600488019683895416905b858110610a4157505050505050505050505050600190565b610a54610a4f82888b6109a6565b6109dc565b610a5f82888b6109a6565b8581013590601e198136030182121561014457019081359167ffffffffffffffff831161014457850190823603821361014457610ab7928e923563ffffffff60e01b9182821694808210610bc4575b50505050610ce3565b805f52898452610ad98989610ad3858b8b8b5f205416946109a6565b91610d2e565b8015610b90575b610b7f57610af9610af283898c6109a6565b8985610d2e565b159081610b49575b81610b23575b50610b13578b01610a29565b5050505050505050505050505f90565b90505f5260038a018352610b4285855f20541688610ad3848a8d6109a6565b155f610b07565b905085610b5a610a4f848a8d6109a6565b165f528c8b018452610b788989610ad3858b8b8b5f205416946109a6565b1590610b01565b505050505050505050505050505f90565b5085610ba0610a4f848a8d6109a6565b165f5260028b018452610bbf8989610ad3858b8b8b5f205416946109a6565b610ae0565b0360031b82901b161691505f808f80610aae565b90601f8019910116810190811067ffffffffffffffff82111761054f57604052565b80356001600160a01b03811690819003610144578252602081013560208301526040810135601e19823603018112156101445701906020823592019167ffffffffffffffff8111610144578036038313610144578060809360606040850152816060850152848401375f828201840152601f01601f1916010190565b91908181815260208091019260208360051b8201019480945f925b858410610ca2575050505050505090565b90919293949596601f198282030183528735605e19853603018112156101445786610cd260019387839401610bfa565b990193019401929195949390610c91565b6001600160a01b039160209190911b73ffffffffffffffffffffffffffffffff000000001660e09190911c01818111610d1a571690565b634e487b7160e01b5f52601160045260245ffd5b6001600160a01b0390811692908315610dcc578314610dc457610d779260209260405180958194829363017776e360e01b84526004840152604060248401526044830190610bfa565b03915afa908115610563575f91610d8c575090565b90506020813d602011610dbc575b81610da760209383610bd8565b81010312610144575180151581036101445790565b3d9150610d9a565b505050600190565b505050505f90565b6001600160a01b0391821680610e005750163303610dee57565b604051636587b01b60e11b8152600490fd5b9150503303610dee5756fea26469706673582212209e9fa0825ee0e1967dfaf82fc99e388e0afa753da36ce07907beeb321b89de8f64736f6c63430008170033",
+    "compiler": { "version": "v0.8.23+commit.f704f362" },
+    "contractName": "src/AddressTrustlessManagement.sol:AddressTrustlessManagement",
+    "jsonDescription": {
+      "language": "Solidity",
+      "sources": {
+        "lib/ens-reverse-claimable/src/ENSReverseClaimable.sol": {
+          "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nabstract contract ENSReverseClaimable {\n    /// @notice ENS reverse name resolution is claimable by the owner of the contract.\n    function owner() external pure virtual returns (address) {\n        return 0xaF7E68bCb2Fc7295492A00177f14F59B92814e70; // plopmenz.eth\n    }\n}\n"
+        },
+        "lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol": {
+          "content": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/introspection/ERC165.sol)\n\npragma solidity ^0.8.20;\n\nimport {IERC165} from \"./IERC165.sol\";\n\n/**\n * @dev Implementation of the {IERC165} interface.\n *\n * Contracts that want to implement ERC165 should inherit from this contract and override {supportsInterface} to check\n * for the additional interface id that will be supported. For example:\n *\n * ```solidity\n * function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\n *     return interfaceId == type(MyInterface).interfaceId || super.supportsInterface(interfaceId);\n * }\n * ```\n */\nabstract contract ERC165 is IERC165 {\n    /**\n     * @dev See {IERC165-supportsInterface}.\n     */\n    function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {\n        return interfaceId == type(IERC165).interfaceId;\n    }\n}\n"
+        },
+        "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol": {
+          "content": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/introspection/IERC165.sol)\n\npragma solidity ^0.8.20;\n\n/**\n * @dev Interface of the ERC165 standard, as defined in the\n * https://eips.ethereum.org/EIPS/eip-165[EIP].\n *\n * Implementers can declare support of contract interfaces, which can then be\n * queried by others ({ERC165Checker}).\n *\n * For an implementation, see {ERC165}.\n */\ninterface IERC165 {\n    /**\n     * @dev Returns true if this contract implements the interface defined by\n     * `interfaceId`. See the corresponding\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\n     * to learn more about how these ids are created.\n     *\n     * This function call must use less than 30 000 gas.\n     */\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\n}\n"
+        },
+        "lib/osx-commons/contracts/src/dao/IDAO.sol": {
+          "content": "// SPDX-License-Identifier: AGPL-3.0-or-later\n\npragma solidity ^0.8.8;\n\n/// @title IDAO\n/// @author Aragon Association - 2022-2023\n/// @notice The interface required for DAOs within the Aragon App DAO framework.\n/// @custom:security-contact sirt@aragon.org\ninterface IDAO {\n    /// @notice The action struct to be consumed by the DAO's `execute` function resulting in an external call.\n    /// @param to The address to call.\n    /// @param value The native token value to be sent with the call.\n    /// @param data The bytes-encoded function selector and calldata for the call.\n    struct Action {\n        address to;\n        uint256 value;\n        bytes data;\n    }\n\n    /// @notice Checks if an address has permission on a contract via a permission identifier and considers if `ANY_ADDRESS` was used in the granting process.\n    /// @param _where The address of the contract.\n    /// @param _who The address of a EOA or contract to give the permissions.\n    /// @param _permissionId The permission identifier.\n    /// @param _data The optional data passed to the `PermissionCondition` registered.\n    /// @return Returns true if the address has permission, false if not.\n    function hasPermission(\n        address _where,\n        address _who,\n        bytes32 _permissionId,\n        bytes memory _data\n    ) external view returns (bool);\n\n    /// @notice Updates the DAO metadata (e.g., an IPFS hash).\n    /// @param _metadata The IPFS hash of the new metadata object.\n    function setMetadata(bytes calldata _metadata) external;\n\n    /// @notice Emitted when the DAO metadata is updated.\n    /// @param metadata The IPFS hash of the new metadata object.\n    event MetadataSet(bytes metadata);\n\n    /// @notice Executes a list of actions. If a zero allow-failure map is provided, a failing action reverts the entire execution. If a non-zero allow-failure map is provided, allowed actions can fail without the entire call being reverted.\n    /// @param _callId The ID of the call. The definition of the value of `callId` is up to the calling contract and can be used, e.g., as a nonce.\n    /// @param _actions The array of actions.\n    /// @param _allowFailureMap A bitmap allowing execution to succeed, even if individual actions might revert. If the bit at index `i` is 1, the execution succeeds even if the `i`th action reverts. A failure map value of 0 requires every action to not revert.\n    /// @return The array of results obtained from the executed actions in `bytes`.\n    /// @return The resulting failure map containing the actions have actually failed.\n    function execute(\n        bytes32 _callId,\n        Action[] memory _actions,\n        uint256 _allowFailureMap\n    ) external returns (bytes[] memory, uint256);\n\n    /// @notice Emitted when a proposal is executed.\n    /// @param actor The address of the caller.\n    /// @param callId The ID of the call.\n    /// @param actions The array of actions executed.\n    /// @param allowFailureMap The allow failure map encoding which actions are allowed to fail.\n    /// @param failureMap The failure map encoding which actions have failed.\n    /// @param execResults The array with the results of the executed actions.\n    /// @dev The value of `callId` is defined by the component/contract calling the execute function. A `Plugin` implementation can use it, for example, as a nonce.\n    event Executed(\n        address indexed actor,\n        bytes32 callId,\n        Action[] actions,\n        uint256 allowFailureMap,\n        uint256 failureMap,\n        bytes[] execResults\n    );\n\n    /// @notice Emitted when a standard callback is registered.\n    /// @param interfaceId The ID of the interface.\n    /// @param callbackSelector The selector of the callback function.\n    /// @param magicNumber The magic number to be registered for the callback function selector.\n    event StandardCallbackRegistered(\n        bytes4 interfaceId,\n        bytes4 callbackSelector,\n        bytes4 magicNumber\n    );\n\n    /// @notice Deposits (native) tokens to the DAO contract with a reference string.\n    /// @param _token The address of the token or address(0) in case of the native token.\n    /// @param _amount The amount of tokens to deposit.\n    /// @param _reference The reference describing the deposit reason.\n    function deposit(address _token, uint256 _amount, string calldata _reference) external payable;\n\n    /// @notice Emitted when a token deposit has been made to the DAO.\n    /// @param sender The address of the sender.\n    /// @param token The address of the deposited token.\n    /// @param amount The amount of tokens deposited.\n    /// @param _reference The reference describing the deposit reason.\n    event Deposited(\n        address indexed sender,\n        address indexed token,\n        uint256 amount,\n        string _reference\n    );\n\n    /// @notice Emitted when a native token deposit has been made to the DAO.\n    /// @dev This event is intended to be emitted in the `receive` function and is therefore bound by the gas limitations for `send`/`transfer` calls introduced by [ERC-2929](https://eips.ethereum.org/EIPS/eip-2929).\n    /// @param sender The address of the sender.\n    /// @param amount The amount of native tokens deposited.\n    event NativeTokenDeposited(address sender, uint256 amount);\n\n    /// @notice Setter for the trusted forwarder verifying the meta transaction.\n    /// @param _trustedForwarder The trusted forwarder address.\n    function setTrustedForwarder(address _trustedForwarder) external;\n\n    /// @notice Getter for the trusted forwarder verifying the meta transaction.\n    /// @return The trusted forwarder address.\n    function getTrustedForwarder() external view returns (address);\n\n    /// @notice Emitted when a new TrustedForwarder is set on the DAO.\n    /// @param forwarder the new forwarder address.\n    event TrustedForwarderSet(address forwarder);\n\n    /// @notice Checks whether a signature is valid for a provided hash according to [ERC-1271](https://eips.ethereum.org/EIPS/eip-1271).\n    /// @param _hash The hash of the data to be signed.\n    /// @param _signature The signature byte array associated with `_hash`.\n    /// @return Returns the `bytes4` magic value `0x1626ba7e` if the signature is valid and `0xffffffff` if not.\n    function isValidSignature(bytes32 _hash, bytes memory _signature) external returns (bytes4);\n\n    /// @notice Registers an ERC standard having a callback by registering its [ERC-165](https://eips.ethereum.org/EIPS/eip-165) interface ID and callback function signature.\n    /// @param _interfaceId The ID of the interface.\n    /// @param _callbackSelector The selector of the callback function.\n    /// @param _magicNumber The magic number to be registered for the function signature.\n    function registerStandardCallback(\n        bytes4 _interfaceId,\n        bytes4 _callbackSelector,\n        bytes4 _magicNumber\n    ) external;\n\n    /// @notice Removed function being left here to not corrupt the IDAO interface ID. Any call will revert.\n    /// @dev Introduced in v1.0.0. Removed in v1.4.0.\n    function setSignatureValidator(address) external;\n}\n"
+        },
+        "src/AddressTrustlessManagement.sol": {
+          "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {TrustlessManagement} from \"./TrustlessManagement.sol\";\n\ncontract AddressTrustlessManagement is TrustlessManagement {\n    /// @inheritdoc TrustlessManagement\n    function hasRole(address _account, uint256 _address) public pure override returns (bool) {\n        return uint160(_account) == _address;\n    }\n}\n"
+        },
+        "src/IDAOExtensionWithAdmin.sol": {
+          "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {IDAO} from \"../lib/osx-commons/contracts/src/dao/IDAO.sol\";\n\ninterface IDAOExtensionWithAdmin {\n    error SenderIsNotAdmin();\n\n    event AdminSet(IDAO indexed dao, address admin);\n\n    /// @notice Registers or updates the admin of a DAO. The admin has the permission to change permissions.\n    /// @param _dao The DAO this admin will control.\n    /// @param _admin The address that will control the DAO.\n    /// @dev If no admin is set, this can only be called by the DAO itself. When an admin is set, only the existing admin can update.\n    function setAdmin(IDAO _dao, address _admin) external;\n}\n"
+        },
+        "src/IDAOManager.sol": {
+          "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {IDAOExtensionWithAdmin, IDAO} from \"./IDAOExtensionWithAdmin.sol\";\n\ninterface IDAOManager is IDAOExtensionWithAdmin {\n    error AccessDenied();\n\n    event Execution(\n        IDAO indexed dao,\n        uint256 indexed role,\n        address indexed sender,\n        IDAO.Action[] actions,\n        bytes[] returnValues,\n        uint256 failureMap\n    );\n\n    /// @notice Executes a list of actions as the DAO.\n    /// @param _dao Which DAO should execute the actions.\n    /// @param _role The role to use for validation if execution is allowed.\n    /// @param _actions The actions to execute.\n    /// @param _failureMap Which actions are allowed to fail without reverting the whole transaction.\n    /// @dev Only a single role means that a user satisfies multiple roles they might need to split their actions into multiple batches (one per role).\n    function asDAO(IDAO _dao, uint256 _role, IDAO.Action[] calldata _actions, uint256 _failureMap)\n        external\n        returns (bytes[] memory returnValues, uint256 failureMap);\n}\n"
+        },
+        "src/IPermissionChecker.sol": {
+          "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {IDAO} from \"../lib/osx-commons/contracts/src/dao/IDAO.sol\";\n\ninterface IPermissionChecker {\n    /// @notice Additional external check if custom conditions are met.\n    /// @param _role The role to check permission for. (this could represent address / holding x amount of ERC20 tokens / ERC721 tokenId / ERC1155 tokenId)\n    /// @param _action The action to check.\n    function checkPermission(uint256 _role, IDAO.Action calldata _action) external view returns (bool);\n}\n"
+        },
+        "src/ITrustlessManagement.sol": {
+          "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {IDAOManager, IDAO, IDAOExtensionWithAdmin} from \"./IDAOManager.sol\";\n\ninterface ITrustlessManagement is IDAOManager {\n    error SenderDoesNotHaveRole();\n\n    event FunctionBlacklistChanged(\n        IDAO indexed dao, uint256 indexed role, address zone, bytes4 functionSelector, address permissionChecker\n    );\n    event ZoneBlacklistChanged(IDAO indexed dao, uint256 indexed role, address zone, address permissionChecker);\n    event FullAccessChanged(IDAO indexed dao, uint256 indexed role, address permissionChecker);\n    event ZoneAccessChanged(IDAO indexed dao, uint256 indexed role, address zone, address permissionChecker);\n    event FunctionAccessChanged(\n        IDAO indexed dao, uint256 indexed role, address zone, bytes4 functionSelector, address permissionChecker\n    );\n\n    /// @notice A container for all info related to a certain DAO.\n    /// @param admin The address that can change the permissions for this DAO.\n    /// @param permissions The permissions set for this DAO.\n    /// @dev Admin as zero address / unset means that the DAO will be the admin itself.\n    struct DAOInfo {\n        address admin;\n        mapping(uint256 role => PermissionInfo permission) permissions;\n    }\n\n    /// @notice A container for all info related to the permissions of a certain role.\n    /// @param fullAccess This role has access to perform any actions, the address referes to a permissionChecker that can be used to impose restrictions.\n    /// @param zoneAccess This role has access to perform any actions, as long as its with a certain smart contract address (zone).\n    /// @param zoneBlacklist This role is prevented to perform any actions with a certain smart contract address (zone).\n    /// @param functionAccess This role has access to call a specific function (functionSelector) of a certain smart contract address (zone).\n    /// @param functionBlacklist This role is prevented to call a specific function (functionSelector) of a certain smart contract address (zone).\n    /// @dev In case you dont need to use any permissionChecker, you can set the address to NO_PERMISSION_CHECKER = address(type(uint160).max).\n    /// @dev In case you want to revoke the permission, you can set the permissionChecker back to default REVOKE = address(0).\n    /// @dev FunctionIds are encoded as (uint160(bytes20(_zone)) << 32) + uint32(_functionSelector).\n    struct PermissionInfo {\n        address fullAccess;\n        mapping(address zone => address permissionChecker) zoneAccess;\n        mapping(address zone => address permissionChecker) zoneBlacklist;\n        mapping(uint256 functionId => address permissionChecker) functionAccess;\n        mapping(uint256 functionId => address permissionChecker) functionBlacklist;\n    }\n\n    /// @notice Verifies if an address has/satisfies a certain role.\n    /// @param _account The address to check.\n    /// @param _roleId The role to check.\n    function hasRole(address _account, uint256 _roleId) external view returns (bool);\n\n    /// @notice Verifies if a role is allowed to execute a list of actions.\n    /// @param _dao The DAO to check permissions of.\n    /// @param _role The role to check permission for.\n    /// @param _actions The actions to check.\n    /// @dev Only a single role means that a user satisfies multiple roles they might need to split their actions into multiple batches (one per role).\n    function isAllowed(IDAO _dao, uint256 _role, IDAO.Action[] calldata _actions) external view returns (bool);\n\n    /// @notice Grants/Revokes a role the permission to do any action (if not blacklisted).\n    /// @param _dao The DAO that will have the permission change.\n    /// @param _role The role that is granted/revoked the permission.\n    /// @param _permissionChecker ZeroAddress for always off, FullAddress (0xFFF...FFF) for always on. Can be the address of IPermissionChecker smart contract for a custom condition check.\n    function changeFullAccess(IDAO _dao, uint256 _role, address _permissionChecker) external;\n\n    /// @notice Grants/Revokes a role the permission to call all functions of one smart contract (if not blacklisted).\n    /// @param _dao The DAO that will have the permission change.\n    /// @param _role The role that is granted/revoked the permission.\n    /// @param _zone The address of the smart contract.\n    /// @param _permissionChecker ZeroAddress for always off, FullAddress (0xFFF...FFF) for always on. Can be the address of IPermissionChecker smart contract for a custom condition check.\n    function changeZoneAccess(IDAO _dao, uint256 _role, address _zone, address _permissionChecker) external;\n\n    /// @notice Adds to / Removes from a blacklist preventing a role from calling one function of one smart contract.\n    /// @param _dao The DAO that will have the permission change.\n    /// @param _role The role that is added to / removed from this blacklist.\n    /// @param _zone The address of the smart contract.\n    /// @param _functionSelector The function selector of the smart contract.\n    /// @param _permissionChecker ZeroAddress for always off, FullAddress (0xFFF...FFF) for always on. Can be the address of IPermissionChecker smart contract for a custom condition check.\n    /// @dev This takes priority no matter what access (full/zone/function) the role has.\n    function changeFunctionBlacklist(\n        IDAO _dao,\n        uint256 _role,\n        address _zone,\n        bytes4 _functionSelector,\n        address _permissionChecker\n    ) external;\n\n    /// @notice Grants/Revokes a role the permission to call one function of one smart contract (if not blacklisted).\n    /// @param _dao The DAO that will have the permission change.\n    /// @param _role The role that is granted/revoked the permission.\n    /// @param _zone The address of the smart contract.\n    /// @param _functionSelector The function selector of the smart contract.\n    /// @param _permissionChecker ZeroAddress for always off, FullAddress (0xFFF...FFF) for always on. Can be the address of IPermissionChecker smart contract for a custom condition check.\n    function changeFunctionAccess(\n        IDAO _dao,\n        uint256 _role,\n        address _zone,\n        bytes4 _functionSelector,\n        address _permissionChecker\n    ) external;\n\n    /// @notice Adds to / Removes from a blacklist preventing a role from calling any function of one smart contract.\n    /// @param _dao The DAO that will have the permission change.\n    /// @param _role The role that is added to / removed from this blacklist.\n    /// @param _zone The address of the smart contract.\n    /// @param _permissionChecker ZeroAddress for always off, FullAddress (0xFFF...FFF) for always on. Can be the address of IPermissionChecker smart contract for a custom condition check.\n    /// @dev This takes priority no matter what access (full/zone/function) the role has.\n    function changeZoneBlacklist(IDAO _dao, uint256 _role, address _zone, address _permissionChecker) external;\n}\n"
+        },
+        "src/TrustlessManagement.sol": {
+          "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport {ERC165} from \"../lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol\";\nimport {ENSReverseClaimable} from \"../lib/ens-reverse-claimable/src/ENSReverseClaimable.sol\";\n\nimport {IPermissionChecker} from \"./IPermissionChecker.sol\";\nimport {ITrustlessManagement, IDAOManager, IDAO, IDAOExtensionWithAdmin} from \"./ITrustlessManagement.sol\";\n\naddress constant NO_PERMISSION_CHECKER = address(type(uint160).max);\nbytes32 constant EXECUTION_ID = keccak256(\"TRUSTLESS_MANAGEMENT\");\n\nabstract contract TrustlessManagement is ERC165, ENSReverseClaimable, ITrustlessManagement {\n    mapping(IDAO dao => DAOInfo info) private daoInfo;\n\n    /// @inheritdoc ERC165\n    function supportsInterface(bytes4 _interfaceId) public view virtual override returns (bool) {\n        return _interfaceId == type(ITrustlessManagement).interfaceId || super.supportsInterface(_interfaceId);\n    }\n\n    /// @inheritdoc ITrustlessManagement\n    function hasRole(address _account, uint256 _roleId) public view virtual returns (bool);\n\n    /// @inheritdoc ITrustlessManagement\n    function isAllowed(IDAO _dao, uint256 _role, IDAO.Action[] calldata _actions) public view returns (bool) {\n        PermissionInfo storage permissions = daoInfo[_dao].permissions[_role];\n\n        for (uint256 i; i < _actions.length;) {\n            uint256 functionId = _functionId(_actions[i].to, bytes4(_actions[i].data));\n            if (\n                _checkPermission(permissions.functionBlacklist[functionId], _role, _actions[i])\n                    || _checkPermission(permissions.zoneBlacklist[_actions[i].to], _role, _actions[i])\n            ) {\n                // Blacklisted\n                return false;\n            }\n\n            if (\n                !_checkPermission(permissions.fullAccess, _role, _actions[i])\n                    && !_checkPermission(permissions.zoneAccess[_actions[i].to], _role, _actions[i])\n                    && !_checkPermission(permissions.functionAccess[functionId], _role, _actions[i])\n            ) {\n                // Permission not granted\n                return false;\n            }\n\n            unchecked {\n                ++i;\n            }\n        }\n\n        // No action rejected => allowed\n        return true;\n    }\n\n    /// @inheritdoc IDAOManager\n    function asDAO(IDAO _dao, uint256 _role, IDAO.Action[] calldata _actions, uint256 _failureMap)\n        external\n        returns (bytes[] memory returnValues, uint256 failureMap)\n    {\n        if (!hasRole(msg.sender, _role)) {\n            revert SenderDoesNotHaveRole();\n        }\n        if (!isAllowed(_dao, _role, _actions)) {\n            revert AccessDenied();\n        }\n\n        (returnValues, failureMap) = _dao.execute(EXECUTION_ID, _actions, _failureMap);\n        emit Execution(_dao, _role, msg.sender, _actions, returnValues, failureMap);\n    }\n\n    /// @inheritdoc IDAOExtensionWithAdmin\n    function setAdmin(IDAO _dao, address _admin) external {\n        DAOInfo storage info = daoInfo[_dao];\n        _ensureSenderIsAdmin(_dao, info.admin);\n        info.admin = _admin;\n        emit AdminSet(_dao, _admin);\n    }\n\n    /// @inheritdoc ITrustlessManagement\n    function changeFullAccess(IDAO _dao, uint256 _role, address _permissionChecker) external {\n        DAOInfo storage info = daoInfo[_dao];\n        _ensureSenderIsAdmin(_dao, info.admin);\n        info.permissions[_role].fullAccess = _permissionChecker;\n        emit FullAccessChanged(_dao, _role, _permissionChecker);\n    }\n\n    /// @inheritdoc ITrustlessManagement\n    function changeZoneAccess(IDAO _dao, uint256 _role, address _zone, address _permissionChecker) external {\n        DAOInfo storage info = daoInfo[_dao];\n        _ensureSenderIsAdmin(_dao, info.admin);\n        info.permissions[_role].zoneAccess[_zone] = _permissionChecker;\n        emit ZoneAccessChanged(_dao, _role, _zone, _permissionChecker);\n    }\n\n    /// @inheritdoc ITrustlessManagement\n    function changeZoneBlacklist(IDAO _dao, uint256 _role, address _zone, address _permissionChecker) external {\n        DAOInfo storage info = daoInfo[_dao];\n        _ensureSenderIsAdmin(_dao, info.admin);\n        info.permissions[_role].zoneBlacklist[_zone] = _permissionChecker;\n        emit ZoneBlacklistChanged(_dao, _role, _zone, _permissionChecker);\n    }\n\n    /// @inheritdoc ITrustlessManagement\n    function changeFunctionAccess(\n        IDAO _dao,\n        uint256 _role,\n        address _zone,\n        bytes4 _functionSelector,\n        address _permissionChecker\n    ) external {\n        DAOInfo storage info = daoInfo[_dao];\n        _ensureSenderIsAdmin(_dao, info.admin);\n        info.permissions[_role].functionAccess[_functionId(_zone, _functionSelector)] = _permissionChecker;\n        emit FunctionAccessChanged(_dao, _role, _zone, _functionSelector, _permissionChecker);\n    }\n\n    /// @inheritdoc ITrustlessManagement\n    function changeFunctionBlacklist(\n        IDAO _dao,\n        uint256 _role,\n        address _zone,\n        bytes4 _functionSelector,\n        address _permissionChecker\n    ) external {\n        DAOInfo storage info = daoInfo[_dao];\n        _ensureSenderIsAdmin(_dao, info.admin);\n        info.permissions[_role].functionBlacklist[_functionId(_zone, _functionSelector)] = _permissionChecker;\n        emit FunctionBlacklistChanged(_dao, _role, _zone, _functionSelector, _permissionChecker);\n    }\n\n    function _checkPermission(address _permissionChecker, uint256 _role, IDAO.Action calldata _action)\n        internal\n        view\n        returns (bool)\n    {\n        if (_permissionChecker == address(0)) {\n            // Permission not granted\n            return false;\n        }\n        if (_permissionChecker == NO_PERMISSION_CHECKER) {\n            // Permission always granted\n            return true;\n        }\n\n        // Additional check\n        return IPermissionChecker(_permissionChecker).checkPermission(_role, _action);\n    }\n\n    // address + function selector\n    function _functionId(address _zone, bytes4 _functionSelector) internal pure returns (uint256) {\n        return (uint160(bytes20(_zone)) << 32) + uint32(_functionSelector);\n    }\n\n    function _ensureSenderIsAdmin(IDAO _dao, address _admin) internal view {\n        if (_admin == address(0)) {\n            // Admin not set means DAO is the admin\n            if (msg.sender != address(_dao)) {\n                revert SenderIsNotAdmin();\n            }\n        } else {\n            // Specific admin will only be allowed. DAO is not allowed to change permissions. (for example: if it is a SubDAO)\n            if (msg.sender != _admin) {\n                revert SenderIsNotAdmin();\n            }\n        }\n    }\n}\n"
+        }
+      },
+      "settings": {
+        "remappings": [
+          "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+          "ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/",
+          "ens-reverse-claimable/=lib/ens-reverse-claimable/src/",
+          "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+          "forge-std/=lib/forge-std/src/",
+          "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+          "osx-commons/=lib/osx-commons/",
+          "tag-manager/=lib/tag-manager/src/"
+        ],
+        "optimizer": { "enabled": true, "runs": 200 },
+        "evmVersion": "shanghai",
+        "viaIR": true
+      },
+      "metadata": { "useLiteralContent": true }
+    },
+    "license": "MIT"
+  },
+  "source": "/home/plopmenz/openmesh-smart-contracts/lib/trustless-management",
+  "submitted": {
+    "transactionHash": "0x929ba76011281dd07b41bf68936f719e6a0983a3ad3c6396a2e1a08d5b188d73",
+    "date": "2024-04-01T20:38:17.226Z"
+  }
+}
