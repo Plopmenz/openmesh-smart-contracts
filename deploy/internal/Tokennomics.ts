@@ -2,7 +2,7 @@ import { Deployer } from "../../web3webdeploy/types";
 import { SmartAccountsDeployment } from "./SmartAccounts";
 import { UTCBlockchainDate } from "../../lib/openmesh-genesis/utils/timeUnits";
 import { Ether, ether } from "../../web3webdeploy/lib/etherUnits";
-import { getChainSettings } from "../deploy";
+import { getChainSettings, testSalt } from "../deploy";
 
 import {
   OpenTokenDeployment,
@@ -42,6 +42,7 @@ export async function deployOpenmeshTokennomics(
   const openToken = await openTokenDeploy(deployer, {
     openSettings: {
       chainId: settings.chainId,
+      salt: testSalt ?? undefined,
       ...getChainSettings(settings.chainId),
     },
   });
@@ -50,6 +51,7 @@ export async function deployOpenmeshTokennomics(
   const validatorPass = await validatorPassDeploy(deployer, {
     validatorPassSettings: {
       chainId: settings.chainId,
+      salt: testSalt ?? undefined,
       ...getChainSettings(settings.chainId),
     },
   });
@@ -69,6 +71,7 @@ export async function deployOpenmeshTokennomics(
       minWeiPerAccount: ether / BigInt(2), // 0.5 ETH
       maxWeiPerAccount: Ether(2), // 2 ETH,
       chainId: settings.chainId,
+      salt: testSalt ?? undefined,
       ...getChainSettings(settings.chainId),
     },
   });
@@ -78,10 +81,12 @@ export async function deployOpenmeshTokennomics(
     openTokenDeployment: openToken,
     verifiedContributorClaiming: {
       chainId: settings.chainId,
+      salt: testSalt ? "OVC" + testSalt : undefined,
       ...getChainSettings(settings.chainId),
     },
     nodesWithdrawClaiming: {
       chainId: settings.chainId,
+      salt: testSalt ? "NODE" + testSalt : undefined,
       ...getChainSettings(settings.chainId),
     },
   });

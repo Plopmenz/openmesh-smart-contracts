@@ -1,5 +1,5 @@
 import { Deployer } from "../../web3webdeploy/types";
-import { getChainSettings, multiDeploy } from "../deploy";
+import { getChainSettings, multiDeploy, testSalt } from "../deploy";
 
 import {
   TasksDeployment,
@@ -35,6 +35,7 @@ export async function deployOpenRD(
         tasksSettings: {
           id: `OpenRD_${chainId}`,
           chainId: chainId,
+          salt: testSalt ?? undefined,
           ...getChainSettings(chainId),
         },
       }),
@@ -49,11 +50,13 @@ export async function deployOpenRD(
         taskDisputeDeploymentSettings: {
           id: `OpenRDDisputes_${chainId}`,
           chainId: chainId,
+          salt: testSalt ?? undefined,
           ...getChainSettings(chainId),
         },
         taskDraftsDeploymentSettings: {
           id: `OpenRDDrafts_${chainId}`,
           chainId: chainId,
+          salt: testSalt ?? undefined,
           ...getChainSettings(chainId),
         },
       }),
@@ -68,6 +71,7 @@ export async function deployOpenRD(
         rfpsDeploymentSettings: {
           id: `OpenRFP_${chainId}`,
           chainId: chainId,
+          salt: testSalt ?? undefined,
           ...getChainSettings(chainId),
         },
       }),

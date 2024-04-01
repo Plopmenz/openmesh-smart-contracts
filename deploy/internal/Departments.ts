@@ -1,5 +1,5 @@
 import { Deployer, Address } from "../../web3webdeploy/types";
-import { getChainSettings } from "../deploy";
+import { getChainSettings, testSalt } from "../deploy";
 
 import {
   VerifiedContributorDeployment,
@@ -69,7 +69,11 @@ export async function deployDepartments(
 
   deployer.startContext("lib/verified-contributor");
   const verifiedContributor = await verifiedContributorDeploy(deployer, {
-    verifiedContributorSettings: { chainId: settings.chainId },
+    verifiedContributorSettings: {
+      chainId: settings.chainId,
+      salt: testSalt ?? undefined,
+      ...getChainSettings(settings.chainId),
+    },
   });
   deployer.finishContext();
   deployer.startContext("lib/tag-manager");
@@ -82,6 +86,7 @@ export async function deployDepartments(
         settings.smartAccounts.openmeshAdmin.admin,
       ],
       chainId: settings.chainId,
+      salt: testSalt ?? undefined,
       ...getChainSettings(settings.chainId),
     })
     .then((deployment) => deployment.address);
@@ -93,6 +98,7 @@ export async function deployDepartments(
       contract: "ERC721CountTrustlessManagement",
       args: [verifiedContributorTagManager],
       chainId: settings.chainId,
+      salt: testSalt ?? undefined,
       ...getChainSettings(settings.chainId),
     })
     .then((deployment) => deployment.address);
@@ -102,6 +108,7 @@ export async function deployDepartments(
       contract: "TagTrustlessManagement",
       args: [verifiedContributorTagManager],
       chainId: settings.chainId,
+      salt: testSalt ?? undefined,
       ...getChainSettings(settings.chainId),
     })
     .then((deployment) => deployment.address);
@@ -109,6 +116,7 @@ export async function deployDepartments(
   deployer.startContext("lib/trustless-actions");
   const optimisticActions = await deployOptimisticActions(deployer, {
     chainId: settings.chainId,
+    salt: testSalt ?? undefined,
   });
   deployer.finishContext();
   deployer.startContext("lib/aragon-tag-voting");
@@ -116,9 +124,11 @@ export async function deployDepartments(
     aragonDeployment: aragonDeployment,
     tagVotingSetupSettings: {
       chainId: settings.chainId,
+      salt: testSalt ?? undefined,
+      ...getChainSettings(settings.chainId),
     },
     tagVotingRepoSettings: {
-      subdomain: "tagvoting",
+      subdomain: "tagvoting" + (testSalt ?? undefined),
       maintainer: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
@@ -141,6 +151,7 @@ export async function deployDepartments(
       optimisticActions: optimisticActions,
     },
     chainId: settings.chainId,
+    salt: testSalt ?? undefined,
     ...getChainSettings(settings.chainId),
   });
   deployer.finishContext();
@@ -361,6 +372,9 @@ export async function deployDepartments(
       addressTrustlessManagement: settings.addressTrustlessManagement,
       optimisticActions: optimisticActions,
       openRD: settings.openRD.openRD.tasks,
+      chainId: settings.chainId,
+      salt: testSalt ?? undefined,
+      ...getChainSettings(settings.chainId),
     });
   const smartAccountDepartmentInstallerAbi = await deployer.getAbi(
     "SmartAccountDepartmentInstaller"

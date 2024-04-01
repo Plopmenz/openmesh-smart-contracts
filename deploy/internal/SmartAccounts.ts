@@ -1,5 +1,5 @@
 import { Deployer, Address } from "../../web3webdeploy/types";
-import { getChainSettings, multiDeploy } from "../deploy";
+import { getChainSettings, multiDeploy, testSalt } from "../deploy";
 
 import {
   OpenmeshAdminDeployment,
@@ -40,6 +40,7 @@ export async function deploySmartAccounts(
         adminSettings: {
           id: `OpenmeshAdmin_${chainId}`,
           chainId: chainId,
+          salt: testSalt ?? undefined,
           ...getChainSettings(chainId),
         },
       }),
@@ -50,7 +51,7 @@ export async function deploySmartAccounts(
       deployAdmin(deployer, {
         id: `DisputeDepartmentSmartAccount_${chainId}`,
         chainId: chainId,
-        salt: DepartmentTags.Dispute,
+        salt: DepartmentTags.Dispute + (testSalt ?? ""),
         ...getChainSettings(chainId),
       }),
     settings.chains
@@ -60,7 +61,7 @@ export async function deploySmartAccounts(
       deployAdmin(deployer, {
         id: `CoreMemberDepartmentSmartAccount_${chainId}`,
         chainId: chainId,
-        salt: DepartmentTags.CoreMember,
+        salt: DepartmentTags.CoreMember + (testSalt ?? ""),
         ...getChainSettings(chainId),
       }),
     settings.chains
@@ -70,7 +71,7 @@ export async function deploySmartAccounts(
       deployAdmin(deployer, {
         id: `ExpertDepartmentSmartAccount_${chainId}`,
         chainId: chainId,
-        salt: DepartmentTags.Expert,
+        salt: DepartmentTags.Expert + (testSalt ?? ""),
         ...getChainSettings(chainId),
       }),
     settings.chains
@@ -85,6 +86,8 @@ export async function deploySmartAccounts(
       deployPessimisticActions(deployer, {
         id: `PessimisticActions_${chainId}`,
         chainId: chainId,
+        salt: testSalt ?? undefined,
+        ...getChainSettings(chainId),
       }),
     settings.chains
   );
@@ -105,6 +108,7 @@ export async function deploySmartAccounts(
             settings.openRD.openRD.tasks,
           ],
           chainId: chainId,
+          salt: testSalt ?? undefined,
           ...getChainSettings(chainId),
         })
         .then((deployment) => deployment.address),

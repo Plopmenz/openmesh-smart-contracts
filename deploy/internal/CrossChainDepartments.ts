@@ -1,5 +1,5 @@
 import { Deployer, Address } from "../../web3webdeploy/types";
-import { getChainSettings } from "../deploy";
+import { getChainSettings, testSalt } from "../deploy";
 
 import { deployCrossChainAccount } from "../../lib/crosschain-account/deploy/internal/CrossChainAccount";
 import {
@@ -33,6 +33,7 @@ export async function deployCrossChainDepartments(
       CCIPDeployments[settings.departmentChainId].chainSelector,
     originAddress: settings.smartAccounts.departments.disputeDepartment,
     chainId: settings.accountChainId,
+    salt: testSalt ?? undefined,
     ...getChainSettings(settings.accountChainId),
   });
   const coreMemberDepartment = await deployCrossChainAccount(deployer, {
@@ -41,6 +42,7 @@ export async function deployCrossChainDepartments(
       CCIPDeployments[settings.departmentChainId].chainSelector,
     originAddress: settings.smartAccounts.departments.coreMemberDepartment,
     chainId: settings.accountChainId,
+    salt: testSalt ?? undefined,
     ...getChainSettings(settings.accountChainId),
   });
   const expertDepartment = await deployCrossChainAccount(deployer, {
@@ -49,6 +51,7 @@ export async function deployCrossChainDepartments(
       CCIPDeployments[settings.departmentChainId].chainSelector,
     originAddress: settings.smartAccounts.departments.expertDepartment,
     chainId: settings.accountChainId,
+    salt: testSalt ?? undefined,
     ...getChainSettings(settings.accountChainId),
   });
   deployer.finishContext();

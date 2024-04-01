@@ -33,6 +33,8 @@ export interface OpenmeshDeployment {
   crossChainDepartments: CrossChainDepartmentsDeployment;
 }
 
+export const testSalt: string | undefined = undefined;
+
 export async function deploy(
   deployer: Deployer,
   settings?: OpenmeshDeploymentSettings
@@ -60,6 +62,7 @@ export async function deploy(
           id: "AddressTrustlessManagement",
           contract: "AddressTrustlessManagement",
           chainId: chainId,
+          salt: testSalt ?? undefined,
           ...getChainSettings(chainId),
         })
         .then((deployment) => deployment.address),
