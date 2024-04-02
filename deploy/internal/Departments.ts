@@ -168,7 +168,7 @@ export async function deployDepartments(
       deployer.viem.encodeFunctionData({
         abi: verifiedContributorAbi,
         functionName: "grantRole",
-        args: [role, departmentFactory.departmentFactory],
+        args: [role, departmentFactory.departmentOwner],
       })
     );
   const grantOpenmeshAdminVerifiedContributorMintingData =
