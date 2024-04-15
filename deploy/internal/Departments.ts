@@ -117,6 +117,7 @@ export async function deployDepartments(
   const optimisticActions = await deployOptimisticActions(deployer, {
     chainId: settings.chainId,
     salt: testSalt ?? undefined,
+    ...getChainSettings(settings.chainId),
   });
   deployer.finishContext();
   deployer.startContext("lib/aragon-tag-voting");

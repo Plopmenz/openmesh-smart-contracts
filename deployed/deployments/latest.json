@@ -1,66 +1,66 @@
 {
   "openRD": {
-    "openRD": { "tasks": "0x52a7E7C9EB8d92BdFC3B08550EDC8B1f7Eb5fE47" },
+    "openRD": { "tasks": "0x4436DF92364aBc450AfeC494ED492C2C9D713bc5" },
     "openRDDaoExtensions": {
-      "taskDisputes": "0x99b3c88E4c4Ab2489e487C9870899443dDDFdF00",
-      "taskDrafts": "0x21BAC8BA74E54eeCf9b67C509CF802f8FA938B67"
+      "taskDisputes": "0xb082d1323068ca6c123EB7eB94b104E0f83127DE",
+      "taskDrafts": "0xcA27dDccd950bD201630999B2Dd9CDDA9B429BEC"
     },
-    "openRFP": { "RFPs": "0x14384C4B046FB1908EC66cF0a936fA54053E2590" }
+    "openRFP": { "RFPs": "0x8EB2eDCc549DDb73a3d6114a52936c069bD52400" }
   },
   "smartAccounts": {
-    "openmeshAdmin": { "admin": "0xCb762Ab29cD7911B1d90ED588dE9d1cBdF21cD68" },
+    "openmeshAdmin": { "admin": "0x3F70b483A5cc80cF6E80916621bF40A11081743D" },
     "departments": {
-      "disputeDepartment": "0x6003d4ce9C0441b6673669154392784Ad3dB1441",
-      "coreMemberDepartment": "0xC9e0D0386b223b3944E6F20685CDAF87aa34e1E6",
-      "expertDepartment": "0xA882Ed823558d2c0D1B2CBf5Fc7ED10C617D5607"
+      "disputeDepartment": "0x6a956DaD77262E80a11dFE3277737Ac6d9469759",
+      "coreMemberDepartment": "0xB7f7315088EA8E0CFb7b2a46Ca6ca18ac1370A79",
+      "expertDepartment": "0x8765a0779c72C12C2e0Ce22fac3f21932C93088a"
     }
   },
   "tokennomics": {
-    "openToken": { "openToken": "0xbd109A3B0c5a2A085F73240889cf2fe05c7e7d30" },
+    "openToken": { "openToken": "0xd1275764CDe23bE2799AaadDac24a253396C69f3" },
     "validatorPass": {
-      "validatorPass": "0x9CDF15f93AC1F57419eE0ef313b04FcEdc946585"
+      "validatorPass": "0xD9BefB58C0256cD662e3dC45a688F6d75eC485B0"
     },
     "openmeshGenesis": {
-      "openmeshGenesis": "0xbf818805e5431772ea6946ED4AEC614c51c37daf"
+      "openmeshGenesis": "0x4050854BB53df4F39eE57Ce690bD3dE12a713C3a"
     },
     "openClaiming": {
-      "ovcClaiming": "0x77147fD0142619CDF70369CdC90Bc4956c260953",
-      "nodeClaiming": "0xb1A1EEC92Dc71d0e4334c116B99512Eb9EA928c9"
+      "ovcClaiming": "0xb986569be25DBB21bFe3459abdE483F398c95555",
+      "nodeClaiming": "0x05C0ee78CD4730dD81386d6F184486eF94Ba622a"
     }
   },
   "departments": {
     "verifiedContributor": {
-      "verifiedContributor": "0x23cdba70470C2D119396fD5584b3e362727FcE4C"
+      "verifiedContributor": "0x8dEE881f3F6E0b65A06c2c2F8CF6bAc612aA84C7"
     },
-    "verifiedContributorTagManager": "0x339cFED035F30A5155AAD4964565E8BdD7f70f0b",
-    "verifiedContributorCountTrustlessManagement": "0x1788Ff7597B77787bCd19A774f88D8237e2e7690",
-    "verifiedContributorTagTrustlessManagement": "0x4087CdEC13559B75428BE770e9799f2F02d21CaE",
+    "verifiedContributorTagManager": "0x6e80EDE1FfC56603098970a159b5794B34baD1aC",
+    "verifiedContributorCountTrustlessManagement": "0xD31827AB103E4067c19094D06B7b6FD3650922a3",
+    "verifiedContributorTagTrustlessManagement": "0x3A2A4C006a174FF3bC0913f8Df4d3De00CC90832",
     "departmentDaos": {
       "departmentFactory": {
-        "departmentFactory": "0x90962a3c16246D20a617D02dc88fc13b4128d7ad",
+        "departmentFactory": "0x1F3fCCceC909050c452574C5A52168bf89e896A0",
         "departmentOwner": {
-          "dao": "0x8E3798A24c15C6E8e87ea02ef78B023710584e3a",
-          "tokenVoting": "0xB80cCc09c1A3C000702088B06aD6420F156eC07e"
+          "dao": "0x479811EE0FFf33Fc0e033eb4f2756Cc9c6A5313C",
+          "tokenVoting": "0x5B08305497fb3a087Fc582D45fcb648c98177c43"
         }
       },
-      "smartAccountDepartmentInstaller": "0x361d3799e3890627bb1b30AaF44eB84c7F5DB91C",
+      "smartAccountDepartmentInstaller": "0x811737b560Cb769336f3188de8e2e5465107dA81",
       "disputeDepartment": {
-        "dao": "0xb689ad333eB30F67cdA8e8ebA4B18bdE14753dA1",
-        "tagVoting": "0xC02bd14d4dd41DBe027044FbeFab7c08f9055A9f"
+        "dao": "0x1cFB33206C8e1e4eDc36212c919E4C867E627758",
+        "tagVoting": "0x9135fd90f8Ee5763A045e5b4561e289F817e8434"
       },
       "coreMemberDepartment": {
-        "dao": "0x8300Df67b70E6CCCb2c3de5369C06b2C95d6DEBe",
-        "tagVoting": "0xf1A3Cc13B48C4A202B4552bCE9bC6cf3E21d4cFC"
+        "dao": "0x30D337E7EaC2d3fa5f980975D2b7B7693D6c5d45",
+        "tagVoting": "0x80EC8C4ab30fd448998E6a3350C4BF529Afea8C4"
       },
       "expertDepartment": {
-        "dao": "0x028fC5eA1Adb81c91E7901F8AdA4eB63886b46cd",
-        "tagVoting": "0xC6bF369e0e29b7dc95C36b1daE097bB609A28e2b"
+        "dao": "0x9EcD8d9D90323Ea205C6b61797a6d35FBaFD6CbD",
+        "tagVoting": "0x443fC0ED84413820c75766d1524a259A87a97D47"
       }
     }
   },
   "crossChainDepartments": {
-    "disputeDepartment": "0x3997611534D113d19766AddF0e8274BA4f03dfDd",
-    "coreMemberDepartment": "0x08435BFCc4ecDE7ef8fbf32F91b4384759407390",
-    "expertDepartment": "0xDa8818427586a5C24f55483F9709DB382DD578a3"
+    "disputeDepartment": "0xeC140c160ff787536f1C172321a1932933c1f8C4",
+    "coreMemberDepartment": "0x46305688c41106Ae8711ab12EBf2C0d0eA714e5a",
+    "expertDepartment": "0x9459149E50153379D7EDb04dc37c7d5bA6112526"
   }
 }

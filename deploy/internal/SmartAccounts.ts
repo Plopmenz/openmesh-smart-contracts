@@ -143,7 +143,7 @@ export async function deploySmartAccounts(
           function: "multicall",
           args: [[enableDisputesCall(getDisputeCost(chainId))]],
           chainId: chainId,
-          from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+          from: "0xaF7E68bCb20x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51Fc7295492A00177f14F59B92814e70",
           ...getChainSettings(chainId),
         })
         .then((deployment) => {}),
@@ -167,7 +167,7 @@ function getDisputeCost(chainId: number): bigint {
       return ether / BigInt(50); // 0.02 ETH
     case 137:
       return Ether(10); // 10 MATIC
-    case 80001:
+    case 421614:
     case 11155111:
       return BigInt(chainId); // Very low (and unique per chain for proper testing)
     default:

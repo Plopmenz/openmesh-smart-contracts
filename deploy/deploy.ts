@@ -56,8 +56,8 @@ export async function deploy(
 
   // Testnet
   const ethereumChainId = 11155111;
-  const polygonChainId = 80001;
-  const aragonNetwork = SupportedNetworks.MUMBAI;
+  const polygonChainId = 421614;
+  const aragonNetwork = SupportedNetworks.ARBITRUM_SEPOLIA;
 
   // Trustless management
   deployer.startContext("lib/trustless-management");
@@ -139,10 +139,10 @@ export function getChainSettings(chainId: number): {
         baseFee: Gwei(75),
         priorityFee: Gwei(30),
       };
-    case 80001:
+    case 421614:
       return {
-        baseFee: gwei + gwei / BigInt(2),
-        priorityFee: gwei + gwei / BigInt(2),
+        baseFee: gwei,
+        priorityFee: gwei / BigInt(10),
       };
     case 11155111:
       return {
