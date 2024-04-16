@@ -1,5 +1,5 @@
 export const VerifiedContributorCountTrustlessManagementContract = {
-  address: "0xD31827AB103E4067c19094D06B7b6FD3650922a3",
+  address: "0x98bEb83F02D7ce3E32934cfAf3b0561cA4FBCb45",
   abi: [
     {
       type: "constructor",

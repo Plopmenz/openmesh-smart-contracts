@@ -96,7 +96,7 @@ export async function deployDepartments(
     .deploy({
       id: "VerifiedContributorCountTrustlessManagement",
       contract: "ERC721CountTrustlessManagement",
-      args: [verifiedContributorTagManager],
+      args: [verifiedContributor.verifiedContributor],
       chainId: settings.chainId,
       salt: testSalt ?? undefined,
       ...getChainSettings(settings.chainId),
