@@ -1,1 +1,27 @@
-{"type":"function","id":"DisputeDepartmentDAO","batch":"ploparb","batchIndex":39,"functionName":"createDepartment","functionArgs":["","0xf6f5aaef5b31fe16c8226a63f6dd5d2ca71cfc82e86ef26a82a008896dd08045"],"to":"0x1F3fCCceC909050c452574C5A52168bf89e896A0","value":"0","data":"0xe07564c10000000000000000000000000000000000000000000000000000000000000040f6f5aaef5b31fe16c8226a63f6dd5d2ca71cfc82e86ef26a82a008896dd080450000000000000000000000000000000000000000000000000000000000000000","gas":"973444","from":"0xaF7E68bCb2Fc7295492A00177f14F59B92814e70","transactionSettings":{"chainId":421614,"nonce":"22","baseFee":"1000000000","priorityFee":"100000000"},"source":"/home/plopmenz/openmesh-smart-contracts/lib/openmesh-department","submitted":{"transactionHash":"0xde975af401c99c00a30ee715d67d53599a00d2af18b1372f41d17d1550d6d905","date":"2024-04-15T18:33:06.718Z"}}
+{
+  "type": "function",
+  "id": "DisputeDepartmentDAO",
+  "batch": "ploparb",
+  "batchIndex": 39,
+  "functionName": "createDepartment",
+  "functionArgs": [
+    "",
+    "0xf6f5aaef5b31fe16c8226a63f6dd5d2ca71cfc82e86ef26a82a008896dd08045"
+  ],
+  "to": "0x1F3fCCceC909050c452574C5A52168bf89e896A0",
+  "value": "0",
+  "data": "0xe07564c10000000000000000000000000000000000000000000000000000000000000040f6f5aaef5b31fe16c8226a63f6dd5d2ca71cfc82e86ef26a82a008896dd080450000000000000000000000000000000000000000000000000000000000000000",
+  "gas": "973444",
+  "from": "0xaF7E68bCb2Fc7295492A00177f14F59B92814e70",
+  "transactionSettings": {
+    "chainId": 421614,
+    "nonce": "22",
+    "baseFee": "1000000000",
+    "priorityFee": "100000000"
+  },
+  "source": "/home/plopmenz/openmesh-smart-contracts/lib/openmesh-department",
+  "submitted": {
+    "transactionHash": "0xde975af401c99c00a30ee715d67d53599a00d2af18b1372f41d17d1550d6d905",
+    "date": "2024-04-15T18:33:06.718Z"
+  }
+}
