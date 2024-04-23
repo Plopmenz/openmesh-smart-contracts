@@ -20,6 +20,7 @@ import {
 
 import { SupportedNetworks } from "../lib/osx-commons/configs/src";
 import { Gwei, gwei } from "../web3webdeploy/lib/etherUnits";
+import { setENS } from "./internal/ENS";
 
 export interface OpenmeshDeploymentSettings {
   forceRedeploy?: boolean;
@@ -107,6 +108,13 @@ export async function deploy(
   const crossChainDepartments = await deployCrossChainDepartments(deployer, {
     accountChainId: ethereumChainId,
     departmentChainId: polygonChainId,
+    smartAccounts: smartAccounts,
+  });
+
+  // Set ENS (+ reverse address) for the smart contracts
+  await setENS(deployer, {
+    chainId: ethereumChainId,
+    openRD: openRD,
     smartAccounts: smartAccounts,
   });
 

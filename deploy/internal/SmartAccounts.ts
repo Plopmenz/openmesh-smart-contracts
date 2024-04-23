@@ -143,7 +143,7 @@ export async function deploySmartAccounts(
           function: "multicall",
           args: [[enableDisputesCall(getDisputeCost(chainId))]],
           chainId: chainId,
-          from: "0xaF7E68bCb20x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51Fc7295492A00177f14F59B92814e70",
+          from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
           ...getChainSettings(chainId),
         })
         .then((deployment) => {}),
