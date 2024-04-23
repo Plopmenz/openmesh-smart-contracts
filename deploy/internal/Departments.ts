@@ -22,8 +22,8 @@ import {
   getNetworkDeploymentForVersion,
 } from "../../lib/osx-commons/configs/src";
 import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
-import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Mumbai/SmartAccountBaseInstaller";
-import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/Mumbai/SmartAccountTrustlessExecution";
+import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountBaseInstaller";
+import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountTrustlessExecution";
 import { SmartAccountsDeployment } from "./SmartAccounts";
 import { OpenRDDeployment } from "./OpenRD";
 
@@ -130,7 +130,7 @@ export async function deployDepartments(
     },
     tagVotingRepoSettings: {
       subdomain: "tagvoting" + (testSalt ?? undefined),
-      maintainer: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+      maintainer: "0x6b221aA392146E31743E1beB5827e88284B09753",
       chainId: settings.chainId,
       ...getChainSettings(settings.chainId),
     },
@@ -184,7 +184,7 @@ export async function deployDepartments(
   ] as const;
   const initialVerifiedContributors = [
     {
-      address: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+      address: "0x6b221aA392146E31743E1beB5827e88284B09753",
       tags: [
         DepartmentTags.Dispute,
         DepartmentTags.CoreMember,
@@ -298,7 +298,7 @@ export async function deployDepartments(
       ],
     ],
     chainId: settings.chainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.chainId),
   });
   await deployer.finishContext();
@@ -390,7 +390,7 @@ export async function deployDepartments(
       ],
     ],
     chainId: settings.chainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.chainId),
   });
   await deployer.execute({
@@ -405,7 +405,7 @@ export async function deployDepartments(
       ],
     ],
     chainId: settings.chainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.chainId),
   });
   await deployer.execute({
@@ -420,7 +420,7 @@ export async function deployDepartments(
       ],
     ],
     chainId: settings.chainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.chainId),
   });
   await deployer.finishContext();

@@ -35,8 +35,8 @@ export interface OpenmeshDeployment {
 }
 
 // As our deployment process is relying on deterministic addresses, you can change this variable to do multiple deployments for 1 chain.
-// In addition to this, you need to replace all occurrences of 0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51 with the address that you can control (it is required to sign a few transactions).
-// You'll also need to replace all occurrences of 0xaD2dc241DcBbC2F5c413d96C1A779cd6C40791A3 with the new OpenmeshAdminSmartAccount address
+// In addition to this, you need to replace all occurrences of 0x6b221aA392146E31743E1beB5827e88284B09753 with the address that you can control (it is required to sign a few transactions).
+// You'll also need to replace all occurrences of 0x24496D746Fd003397790E41d0d1Ce61F4F7fd61f with the new OpenmeshAdminSmartAccount address
 //  (to get this you can attempt to deploy, which will give an error at GrantTokennomicsAccessControlRoles but will generate the predicted deployment address for the Openmesh Admin Smart Account).
 // Replacing all means also in every submodule! (as these variables are set in the smart contracts too) This can be done using CTRL + SHIFT + F in Visual Studio Code.
 // This salt should only contain non-capital letters and -'s (as it's used in ENS subdomains).

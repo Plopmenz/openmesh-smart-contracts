@@ -9,7 +9,7 @@ import { deployAdmin } from "../../lib/openmesh-admin/deploy/internal/OpenmeshAd
 import { deployPessimisticActions } from "../../lib/trustless-actions/deploy/internal/PessimisticActions";
 import { DepartmentTags } from "./Departments";
 import { OpenRDDeployment } from "./OpenRD";
-import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/Mumbai/SmartAccountTrustlessExecution";
+import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountTrustlessExecution";
 import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
 import { Ether, ether } from "../../web3webdeploy/lib/etherUnits";
 
@@ -143,7 +143,7 @@ export async function deploySmartAccounts(
           function: "multicall",
           args: [[enableDisputesCall(getDisputeCost(chainId))]],
           chainId: chainId,
-          from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+          from: "0x6b221aA392146E31743E1beB5827e88284B09753",
           ...getChainSettings(chainId),
         })
         .then((deployment) => {}),

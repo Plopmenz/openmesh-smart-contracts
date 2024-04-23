@@ -8,7 +8,7 @@ import {
 } from "../../lib/crosschain-account/utils/ccip";
 import { SmartAccountsDeployment } from "./SmartAccounts";
 import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
-import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Mumbai/SmartAccountBaseInstaller";
+import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountBaseInstaller";
 
 export interface DeployCrossChainDepartmentsSettings {
   smartAccounts: SmartAccountsDeployment;
@@ -75,7 +75,7 @@ export async function deployCrossChainDepartments(
     function: "performDelegateCall",
     args: transferOwnershipArgs(disputeDepartment),
     chainId: settings.accountChainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.accountChainId),
   });
   await deployer.execute({
@@ -85,7 +85,7 @@ export async function deployCrossChainDepartments(
     function: "performDelegateCall",
     args: transferOwnershipArgs(coreMemberDepartment),
     chainId: settings.accountChainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.accountChainId),
   });
   await deployer.execute({
@@ -95,7 +95,7 @@ export async function deployCrossChainDepartments(
     function: "performDelegateCall",
     args: transferOwnershipArgs(expertDepartment),
     chainId: settings.accountChainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.accountChainId),
   });
   await deployer.finishContext();

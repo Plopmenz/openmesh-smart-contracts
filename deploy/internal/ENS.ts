@@ -129,7 +129,7 @@ export async function setENS(
     function: "multicall",
     args: [calls],
     chainId: settings.chainId,
-    from: "0x2309762aAcA0a8F689463a42c0A6A84BE3A7ea51",
+    from: "0x6b221aA392146E31743E1beB5827e88284B09753",
     ...getChainSettings(settings.chainId),
   });
   deployer.finishContext();
