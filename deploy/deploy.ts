@@ -116,6 +116,7 @@ export async function deploy(
     chainId: ethereumChainId,
     openRD: openRD,
     smartAccounts: smartAccounts,
+    tokennomics: tokennomics,
   });
 
   const deployment: OpenmeshDeployment = {
@@ -139,7 +140,7 @@ export function getChainSettings(chainId: number): {
   switch (chainId) {
     case 1:
       return {
-        baseFee: Gwei(20),
+        baseFee: Gwei(8),
         priorityFee: gwei / BigInt(2),
       };
     case 137:
@@ -149,8 +150,8 @@ export function getChainSettings(chainId: number): {
       };
     case 421614:
       return {
-        baseFee: gwei,
-        priorityFee: gwei / BigInt(10),
+        baseFee: gwei + gwei / BigInt(2),
+        priorityFee: gwei + gwei / BigInt(2),
       };
     case 11155111:
       return {

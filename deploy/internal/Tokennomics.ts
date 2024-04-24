@@ -30,7 +30,7 @@ export interface DeployOpenmeshTokennomicsSettings {
 export interface OpenmeshTokennomicsDeployment {
   openToken: OpenTokenDeployment;
   validatorPass: ValidatorPassDeployment;
-  openmeshGenesis: OpenmeshGenesisDeployment;
+  // openmeshGenesis: OpenmeshGenesisDeployment;
   openClaiming: OpenClaimingDeployment;
 }
 
@@ -56,26 +56,26 @@ export async function deployOpenmeshTokennomics(
     },
   });
   deployer.finishContext();
-  deployer.startContext("lib/openmesh-genesis");
-  const openmeshGenesis = await openmeshGenesisDeploy(deployer, {
-    openTokenDeployment: openToken,
-    validatorPassDeployment: validatorPass,
-    openmeshGenesisSettings: {
-      tokensPerWeiPerPeriod: [BigInt(30_000), BigInt(27_500), BigInt(25_000)],
-      start: UTCBlockchainDate(2024, 3, 2), // 2 March 2024
-      periodEnds: [
-        UTCBlockchainDate(2024, 3, 10), // 10 March 2024
-        UTCBlockchainDate(2024, 3, 20), // 20 March 2024
-        UTCBlockchainDate(2024, 3, 30), // 30 March 2024
-      ],
-      minWeiPerAccount: ether / BigInt(2), // 0.5 ETH
-      maxWeiPerAccount: Ether(2), // 2 ETH,
-      chainId: settings.chainId,
-      salt: testSalt ?? undefined,
-      ...getChainSettings(settings.chainId),
-    },
-  });
-  deployer.finishContext();
+  // deployer.startContext("lib/openmesh-genesis");
+  // const openmeshGenesis = await openmeshGenesisDeploy(deployer, {
+  //   openTokenDeployment: openToken,
+  //   validatorPassDeployment: validatorPass,
+  //   openmeshGenesisSettings: {
+  //     tokensPerWeiPerPeriod: [BigInt(30_000), BigInt(27_500), BigInt(25_000)],
+  //     start: UTCBlockchainDate(2024, 3, 2), // 2 March 2024
+  //     periodEnds: [
+  //       UTCBlockchainDate(2024, 3, 10), // 10 March 2024
+  //       UTCBlockchainDate(2024, 3, 20), // 20 March 2024
+  //       UTCBlockchainDate(2024, 3, 30), // 30 March 2024
+  //     ],
+  //     minWeiPerAccount: ether / BigInt(2), // 0.5 ETH
+  //     maxWeiPerAccount: Ether(2), // 2 ETH,
+  //     chainId: settings.chainId,
+  //     salt: testSalt ?? undefined,
+  //     ...getChainSettings(settings.chainId),
+  //   },
+  // });
+  // deployer.finishContext();
   deployer.startContext("lib/open-claiming");
   const openClaiming = await openClaimingDeploy(deployer, {
     openTokenDeployment: openToken,
@@ -109,22 +109,22 @@ export async function deployOpenmeshTokennomics(
       ],
     })
   );
-  const mintGenesisOpenTokensData = deployer.viem.encodeFunctionData({
-    abi: OPENAbi,
-    functionName: "mint",
-    args: [openmeshGenesis.openmeshGenesis, Ether(80_000_000)],
-  });
+  // const mintGenesisOpenTokensData = deployer.viem.encodeFunctionData({
+  //   abi: OPENAbi,
+  //   functionName: "mint",
+  //   args: [openmeshGenesis.openmeshGenesis, Ether(80_000_000)],
+  // });
   deployer.finishContext();
   deployer.startContext("lib/validator-pass");
-  const grantGenesisGenesisValidatorPassMintingData =
-    deployer.viem.encodeFunctionData({
-      abi: await deployer.getAbi("ValidatorPass"),
-      functionName: "grantRole",
-      args: [
-        deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
-        openmeshGenesis.openmeshGenesis,
-      ],
-    });
+  // const grantGenesisGenesisValidatorPassMintingData =
+  //   deployer.viem.encodeFunctionData({
+  //     abi: await deployer.getAbi("ValidatorPass"),
+  //     functionName: "grantRole",
+  //     args: [
+  //       deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
+  //       openmeshGenesis.openmeshGenesis,
+  //     ],
+  //   });
   deployer.finishContext();
   deployer.startContext("lib/openmesh-admin");
   const openmeshAdminAbi = [...SmartAccountBaseContract.abi]; // await deployer.getAbi("OpenmeshAdmin");
@@ -136,21 +136,21 @@ export async function deployOpenmeshTokennomics(
         args: [openToken.openToken, BigInt(0), grantOpenMintingData],
       })
   );
-  const mintGenesisOpenTokensCall = deployer.viem.encodeFunctionData({
-    abi: openmeshAdminAbi,
-    functionName: "performCall",
-    args: [openToken.openToken, BigInt(0), mintGenesisOpenTokensData],
-  });
-  const grantGenesisGenesisValidatorPassMintingCall =
-    deployer.viem.encodeFunctionData({
-      abi: openmeshAdminAbi,
-      functionName: "performCall",
-      args: [
-        validatorPass.validatorPass,
-        BigInt(0),
-        grantGenesisGenesisValidatorPassMintingData,
-      ],
-    });
+  // const mintGenesisOpenTokensCall = deployer.viem.encodeFunctionData({
+  //   abi: openmeshAdminAbi,
+  //   functionName: "performCall",
+  //   args: [openToken.openToken, BigInt(0), mintGenesisOpenTokensData],
+  // });
+  // const grantGenesisGenesisValidatorPassMintingCall =
+  //   deployer.viem.encodeFunctionData({
+  //     abi: openmeshAdminAbi,
+  //     functionName: "performCall",
+  //     args: [
+  //       validatorPass.validatorPass,
+  //       BigInt(0),
+  //       grantGenesisGenesisValidatorPassMintingData,
+  //     ],
+  //   });
   await deployer.execute({
     id: "GrantTokennomicsAccessControlRoles",
     abi: openmeshAdminAbi,
@@ -159,8 +159,8 @@ export async function deployOpenmeshTokennomics(
     args: [
       [
         ...grantOpenMintingCalls,
-        mintGenesisOpenTokensCall,
-        grantGenesisGenesisValidatorPassMintingCall,
+        // mintGenesisOpenTokensCall,
+        // grantGenesisGenesisValidatorPassMintingCall,
       ],
     ],
     chainId: settings.chainId,
@@ -172,7 +172,7 @@ export async function deployOpenmeshTokennomics(
   return {
     openToken: openToken,
     validatorPass: validatorPass,
-    openmeshGenesis: openmeshGenesis,
+    // openmeshGenesis: openmeshGenesis,
     openClaiming: openClaiming,
   };
 }

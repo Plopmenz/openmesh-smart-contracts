@@ -1,0 +1,27 @@
+{
+  "type": "function",
+  "id": "TransferDisputeSmartAccountOwnershipToCrossChainAccount",
+  "batch": "testnet",
+  "batchIndex": 45,
+  "functionName": "performDelegateCall",
+  "functionArgs": [
+    "0x4811864B715C0F1B0f9790a8ee6F11dC25b7F258",
+    "0xf2fde38b00000000000000000000000003628995bedeb8e971c4bb96db294a70396e1697"
+  ],
+  "to": "0x7aC61b993B4aa460EDf7BC4266Ed4BBCa20bF2Db",
+  "value": "0",
+  "data": "0x8babb23b0000000000000000000000004811864b715c0f1b0f9790a8ee6f11dc25b7f25800000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000024f2fde38b00000000000000000000000003628995bedeb8e971c4bb96db294a70396e169700000000000000000000000000000000000000000000000000000000",
+  "gas": "32892",
+  "from": "0x6b221aA392146E31743E1beB5827e88284B09753",
+  "transactionSettings": {
+    "chainId": 11155111,
+    "nonce": "21",
+    "baseFee": "1500000000",
+    "priorityFee": "1500000000"
+  },
+  "source": "/home/plopmenz/openmesh-smart-contracts/lib/openmesh-admin",
+  "submitted": {
+    "transactionHash": "0xc468f23e1b0f5d9ecc4e7378ca45e9e56af38982064cb7e242589124bd995147",
+    "date": "2024-04-24T19:53:41.755Z"
+  }
+}

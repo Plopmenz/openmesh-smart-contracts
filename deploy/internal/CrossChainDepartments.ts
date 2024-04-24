@@ -8,7 +8,7 @@ import {
 } from "../../lib/crosschain-account/utils/ccip";
 import { SmartAccountsDeployment } from "./SmartAccounts";
 import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
-import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountBaseInstaller";
+import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBaseInstaller";
 
 export interface DeployCrossChainDepartmentsSettings {
   smartAccounts: SmartAccountsDeployment;

@@ -9,7 +9,7 @@ import { deployAdmin } from "../../lib/openmesh-admin/deploy/internal/OpenmeshAd
 import { deployPessimisticActions } from "../../lib/trustless-actions/deploy/internal/PessimisticActions";
 import { DepartmentTags } from "./Departments";
 import { OpenRDDeployment } from "./OpenRD";
-import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountTrustlessExecution";
+import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountTrustlessExecution";
 import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
 import { Ether, ether } from "../../web3webdeploy/lib/etherUnits";
 
@@ -41,6 +41,11 @@ export async function deploySmartAccounts(
           id: `OpenmeshAdmin_${chainId}`,
           chainId: chainId,
           salt: testSalt ?? undefined,
+          ...getChainSettings(chainId),
+        },
+        enableReceiversSettings: {
+          id: `OpenmeshAdminEnableReceivers_${chainId}`,
+          chainId: chainId,
           ...getChainSettings(chainId),
         },
       }),

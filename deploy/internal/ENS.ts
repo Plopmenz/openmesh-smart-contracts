@@ -3,11 +3,13 @@ import { Address, Bytes, Deployer } from "../../web3webdeploy/types";
 import { getChainSettings } from "../deploy";
 import { OpenRDDeployment } from "./OpenRD";
 import { SmartAccountsDeployment } from "./SmartAccounts";
+import { OpenmeshTokennomicsDeployment } from "./Tokennomics";
 
 export interface SetENSSettings {
   chainId: number;
   openRD: OpenRDDeployment;
   smartAccounts: SmartAccountsDeployment;
+  tokennomics: OpenmeshTokennomicsDeployment;
 }
 
 export async function setENS(
@@ -16,8 +18,26 @@ export async function setENS(
 ): Promise<void> {
   const ensItems = [
     {
+      contract: settings.smartAccounts.openmeshAdmin.admin,
+      subdomain: "",
+      // In case some ENS steps are already done
+      mintSubdomain: false,
+      setSubdomain: false,
+      mintReverseAddress: true,
+      setReverseAddress: true,
+    },
+    {
       contract: settings.openRD.openRD.tasks,
       subdomain: "openrd",
+      // In case some ENS steps are already done
+      mintSubdomain: true,
+      setSubdomain: true,
+      mintReverseAddress: true,
+      setReverseAddress: true,
+    },
+    {
+      contract: settings.tokennomics.openToken.openToken,
+      subdomain: "token",
       // In case some ENS steps are already done
       mintSubdomain: true,
       setSubdomain: true,
@@ -34,6 +54,9 @@ export async function setENS(
   const calls: Bytes[] = [];
   for (let i = 0; i < ensItems.length; i++) {
     const ensItem = ensItems[i];
+    const domain = ensItem.subdomain
+      ? `${ensItem.subdomain}.${ensDomain}`
+      : ensDomain;
 
     if (ensItem.mintSubdomain) {
       const parentNode = ensNode;
@@ -61,7 +84,7 @@ export async function setENS(
     }
 
     if (ensItem.setSubdomain) {
-      const node = deployer.viem.namehash(`${ensItem.subdomain}.${ensDomain}`);
+      const node = deployer.viem.namehash(domain);
       const a = ensItem.contract;
       publicResolverCalls.push(
         deployer.viem.encodeFunctionData({
@@ -97,7 +120,7 @@ export async function setENS(
       const node = deployer.viem.namehash(
         `${ensItem.contract.replace("0x", "").toLowerCase()}.addr.reverse`
       );
-      const newName = `${ensItem.subdomain}.${ensDomain}`;
+      const newName = domain;
       publicResolverCalls.push(
         deployer.viem.encodeFunctionData({
           abi: publicResolverAbi,

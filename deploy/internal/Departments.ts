@@ -22,8 +22,8 @@ import {
   getNetworkDeploymentForVersion,
 } from "../../lib/osx-commons/configs/src";
 import { SmartAccountBaseContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBase";
-import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountBaseInstaller";
-import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/Sepolia/SmartAccountTrustlessExecution";
+import { SmartAccountBaseInstallerContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountBaseInstaller";
+import { SmartAccountTrustlessExecutionContract } from "../../lib/openmesh-admin/lib/smart-account/export/SmartAccountTrustlessExecution";
 import { SmartAccountsDeployment } from "./SmartAccounts";
 import { OpenRDDeployment } from "./OpenRD";
 
