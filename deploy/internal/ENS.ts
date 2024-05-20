@@ -22,7 +22,7 @@ export async function setENS(
       subdomain: "",
       // In case some ENS steps are already done
       mintSubdomain: false,
-      setSubdomain: false,
+      setSubdomain: true,
       mintReverseAddress: true,
       setReverseAddress: true,
     },

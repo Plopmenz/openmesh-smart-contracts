@@ -1,0 +1,27 @@
+{
+  "type": "function",
+  "id": "DisputeDepartmentDAO",
+  "batch": "mainnet",
+  "batchIndex": 23,
+  "functionName": "createDepartment",
+  "functionArgs": [
+    "",
+    "0xf6f5aaef5b31fe16c8226a63f6dd5d2ca71cfc82e86ef26a82a008896dd08045"
+  ],
+  "to": "0xb926c30B44490378CF2b77b72edf375c3cB97821",
+  "value": "0",
+  "data": "0xe07564c10000000000000000000000000000000000000000000000000000000000000040f6f5aaef5b31fe16c8226a63f6dd5d2ca71cfc82e86ef26a82a008896dd080450000000000000000000000000000000000000000000000000000000000000000",
+  "gas": "973444",
+  "from": "0x6b221aA392146E31743E1beB5827e88284B09753",
+  "transactionSettings": {
+    "chainId": 137,
+    "nonce": "23",
+    "baseFee": "75000000000",
+    "priorityFee": "30000000000"
+  },
+  "source": "/home/plopmenz/openmesh-smart-contracts/lib/openmesh-department",
+  "submitted": {
+    "transactionHash": "0xcbdedc58927cafff129186b5018195fe8e78f94730cbddf7e0637459d660cc44",
+    "date": "2024-05-20T16:10:47.720Z"
+  }
+}

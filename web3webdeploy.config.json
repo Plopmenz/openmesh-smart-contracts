@@ -1,6 +1,5 @@
 {
   "deleteUnfinishedDeploymentOnGenerate": true,
   "defaultCreate2": true,
-  "defaultSalt": "OPENMESH",
-  "exportToOriginalProject": true
+  "defaultSalt": "OPENMESH"
 }

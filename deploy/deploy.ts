@@ -56,9 +56,9 @@ export async function deploy(
   }
 
   // Testnet
-  const ethereumChainId = 11155111;
-  const polygonChainId = 421614;
-  const aragonNetwork = SupportedNetworks.ARBITRUM_SEPOLIA;
+  const ethereumChainId = 1;
+  const polygonChainId = 137;
+  const aragonNetwork = SupportedNetworks.POLYGON;
 
   // Trustless management
   deployer.startContext("lib/trustless-management");
@@ -104,7 +104,7 @@ export async function deploy(
     addressTrustlessManagement: addressTrustlessManagement,
   });
 
-  // Ethereum accounts for the polygon departments
+  // // Ethereum accounts for the polygon departments
   const crossChainDepartments = await deployCrossChainDepartments(deployer, {
     accountChainId: ethereumChainId,
     departmentChainId: polygonChainId,
@@ -116,7 +116,7 @@ export async function deploy(
     chainId: ethereumChainId,
     openRD: openRD,
     smartAccounts: smartAccounts,
-    tokennomics: tokennomics,
+    tokennomics: {} as any, //tokennomics,
   });
 
   const deployment: OpenmeshDeployment = {
@@ -140,8 +140,8 @@ export function getChainSettings(chainId: number): {
   switch (chainId) {
     case 1:
       return {
-        baseFee: Gwei(8),
-        priorityFee: gwei / BigInt(2),
+        baseFee: Gwei(3),
+        priorityFee: gwei / BigInt(10),
       };
     case 137:
       return {

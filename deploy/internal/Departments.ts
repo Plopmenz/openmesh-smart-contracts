@@ -158,7 +158,6 @@ export async function deployDepartments(
   deployer.finishContext();
 
   const departmentOwnerRoles = [
-    deployer.viem.zeroHash, // Default Admin Role
     deployer.viem.keccak256(deployer.viem.toBytes("MINT")),
     deployer.viem.keccak256(deployer.viem.toBytes("BURN")),
   ] as const;
@@ -184,7 +183,7 @@ export async function deployDepartments(
   ] as const;
   const initialVerifiedContributors = [
     {
-      address: "0x6b221aA392146E31743E1beB5827e88284B09753",
+      address: "0x519ce4C129a981B2CBB4C3990B1391dA24E8EbF3",
       tags: [
         DepartmentTags.Dispute,
         DepartmentTags.CoreMember,

@@ -176,6 +176,6 @@ function getDisputeCost(chainId: number): bigint {
     case 11155111:
       return BigInt(chainId); // Very low (and unique per chain for proper testing)
     default:
-      throw new Error(`Unknown dispute  cost for chain ${chainId}`);
+      throw new Error(`Unknown dispute cost for chain ${chainId}`);
   }
 }
